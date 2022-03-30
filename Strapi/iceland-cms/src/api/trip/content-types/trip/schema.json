@@ -46,6 +46,18 @@
     "Seats": {
       "required": true,
       "type": "integer"
+    },
+    "geolocation": {
+      "type": "relation",
+      "relation": "manyToOne",
+      "target": "api::geolocation.geolocation",
+      "inversedBy": "trips"
+    },
+    "preferences": {
+      "type": "relation",
+      "relation": "manyToMany",
+      "target": "api::preference.preference",
+      "inversedBy": "trips"
     }
   }
 }
