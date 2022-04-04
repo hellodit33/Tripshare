@@ -15,7 +15,7 @@ async function getDataFromStrapi() {
     let myObject = await stringResponse.json();
     
 
-    console.log(myObject);
+    /*console.log(myObject);*/
     
     let output = "";
     
@@ -37,20 +37,17 @@ async function getDataFromStrapi() {
             output += `
             <div class="trip" data-id=${element.id}>
             
-            <h1 class="trip-name">${obj.tripName}</h1>
+            <h2 class="trip-name">${obj.tripName}</h2>
             
             <p class="trip-description">Description: ${obj.tripDescription}</p><p class="trip-leavingdate">Leaving Date: ${obj.TripDates.LeavingDate} </p><p class="trip-arrivingdate">Arriving Date: ${obj.TripDates.ArrivingDate} </p> <p class="trip-leavingdestination"> Leaving From: ${obj.TripDestinations.LeavingDestination}</p> <p class="trip-betweendestination"> First Destination: ${obj.TripDestinations.BetweenDestination} </p> <p class="trip-betweendestination2">Second Destination: ${obj.TripDestinations.BetweenDestination2} </p> <p class="trip-betweendestination3">
             Third Destination: ${obj.TripDestinations.BetweenDestination3} </p> <p class="trip-arrivingdestination"> Finishing At: ${obj.TripDestinations.ArrivingDestination}</p> <p class="trip-seats"> Available Seats: ${obj.Seats}</p> <br>
             
             <img src=${apiUrl}${obj.tripMap2.data[0].attributes.formats.large.url} class="trip-image"/> 
-            
-            <button id="edit">Edit</button>
-            <button id="delete">Delete</button>
-            
+        
        
             </div>
             
-            <`
+            `
             ;
         }});
     } else {
@@ -61,14 +58,13 @@ async function getDataFromStrapi() {
         `<div data-id=${element.id}>
         
     
-        <h1 class="trip-name">${obj.tripName}</h1>
+        <h2 class="trip-name">${obj.tripName}</h2>
         
         
         
         <p class="trip-description"> Description: ${obj.tripDescription} Leaving Date: ${obj.TripDates.LeavingDate} Arriving Date: ${obj.TripDates.ArrivingDate} Leaving From: ${obj.TripDestinations.LeavingDestination} First Destination: ${obj.TripDestinations.BetweenDestination} Second Destination: ${obj.TripDestinations.BetweenDestination2}
         Third Destination: ${obj.TripDestinations.BetweenDestination3} Finishing At: ${obj.TripDestinations.ArrivingDestination} Available Seats: ${obj.Seats}. The map is missing.  </p>
-        <button id="edit">Edit</button>
-        <button id="delete">Delete</button>
+    
        
         </div>
          
@@ -89,147 +85,12 @@ async function getDataFromStrapi() {
     //document.write(output);
     document.getElementById("tripsFetched").innerHTML = output;
 
-
-    document.getElementById("tripsFetched").addEventListener('click', (e) => {
-        e.preventDefault();
-        let delButtonIsPressed = e.target.id == 'delete';
-        let editButtonIsPressed = e.target.id == 'edit';
-
-        let id = e.target.parentElement.dataset.id;
-        //Delete - remove the existing post
-        // method: DELETE
-        if(delButtonIsPressed) {
-            fetch(`${tripsUrl}/${id}`, {
-                method:'DELETE',
-            })
-            .then(res => res.json())
-            .then(() => location.reload())
-    } 
-
-    if(editButtonIsPressed) {
-const parent = e.target.parentElement;
-
-let tripName = parent.querySelector('.trip-name').textContent;
-let tripDescription = parent.querySelector('.trip-description').textContent;
-let tripLeavingDate = parent.querySelector('.trip-leavingdate').textContent;
-let tripArrivingDate = parent.querySelector('.trip-arrivingdate').textContent;
-let tripLeavingDestination = parent.querySelector('.trip-leavingdestination').textContent;
-let tripBetweenDestination = parent.querySelector('.trip-betweendestination').textContent;
-let tripBetweenDestination2 = parent.querySelector('.trip-betweendestination2').textContent;
-let tripBetweenDestination3 = parent.querySelector('.trip-betweendestination3').textContent;
-let tripArrivingDestination = parent.querySelector('.trip-arrivingdestination').textContent;
-let tripSeats = parent.querySelector('.trip-seats').textContent;
-let tripImage = parent.querySelector('.trip-image').textContent;
-
-parent.innerHTML +=`<div>
-<label for="user">Username</label>
-<input type="text" name="user" id="user">
-<label for="email">Email</label>
-<input type="email" name="email" id="email">
-
-<label for="password">Password</label>
-<input type="password" name="password" id="password">
-</div>
-
-<div>
-<label for="name">Give a name to your trip</label>
-<input type="text" name="name" id="name">
-</div>
-<div>
-<label for="description">Description</label>
-<input type="text" name="description" id="description">
-</div>
-<div>
-<label for="seats">Seats</label>
-<input type="number" name="seats" id="seats">
-</div>
-<div>
-<label for="tripDates-leaving">Leaving on:</label>
-<input type="date" name="tripDates-leaving" id="tripDates-leaving" placeholder="Departure date">
-</div>
-<div>
-<label for="tripDates-arriving">Arriving on</label>
-<input type="date" name="tripDates-arriving" id="tripDates-arriving" placeholder="Arriving date">
-</div>
-
-<div>
-<label for="leavingDestination">Leaving from:</label>
-<input type="text" name="leavingDestination" id="leavingDestination" placeholder="the place you're leaving from">
-</div>
-<div>
-<label for="betweenDestination">First stop:</label>
-<input type="text" name="betweenDestination" id="betweenDestination">
-</div>
-<div>
-<label for="betweenDestination2">Second stop:</label>
-<input type="text" name="betweenDestination2" id="betweenDestination2">
-</div>
-<div>
-<label for="betweenDestination3">Third stop:</label>
-<input type="text" name="betweenDestination3" id="betweenDestination3">
-</div>
-<div>
-<label for="arrivingDestination">Coming back to:</label>
-<input type="text" name="arrivingDestination" id="arrivingDestination" placeholder="the place you're finishing your trip at">
-</div>
-<div>
-<label for="tripMap2">Upload map</label>
-<input type="file" name="tripMap2" id="tripMap2">
-</div>
-
-
-<div>
-<button class="btnSubmit">Update a trip</button>`
-//Update - update the existinng post
- // Method: FETCH
- document.querySelector('.btnSubmit').addEventListener('click', () => {
-    const name = document.getElementById("name").value;
-    const description = document.getElementById("description").value;
-    const seats = document.getElementById("seats").value;
-    const tripDatesLeaving = document.getElementById("tripDates-leaving").value;
-    const tripDatesArriving = document.getElementById("tripDates-arriving").value;
-    const leavingDestination = document.getElementById("leavingDestination").value;
-    const betweenDestination = document.getElementById("betweenDestination").value;
-    const betweenDestination2 = document.getElementById("betweenDestination2").value;
-    const betweenDestination3 = document.getElementById("betweenDestination3").value;
-    const arrivingDestination = document.getElementById("arrivingDestination").value;
-    const tripMap2 = document.getElementById("tripMap2").value; 
-     }) }})};
-
-      /* fetch(`${tripsUrl}/${id})`, {
-        method: 'PATCH',
-        headers: {
-            'Content-Type': 'application'
-        },
-       /* body: JSON.stringify({
-         tripName : name,
-            tripDescription : description,
-            Seats : seats,
-            TripDates: {
-                ArrivingDate: tripDatesArriving,
-LeavingDate: tripDatesLeaving
-            
-        },
-        TripDestinations: {
-        
-            LeavingDestination: leavingDestination,
-            BetweenDestination: betweenDestination,
-            BetweenDestination2: betweenDestination2,
-            BetweenDestination3: betweenDestination3,
-            ArrivingDestination: arrivingDestination
-        },
-      
-        })
-    })
- .then(res => res.json())
- .then(() => location.reload()
-
- 
- */
+}
+  
 
 
 
-    //add south iceland trip - deleted by
+
     //Funktion för att hämta Token för användare
     //Om en Token hämtas så betyder det att user/password är korrekt skrivet
     async function getToken() {

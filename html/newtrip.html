@@ -5,22 +5,25 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <script src="script.js"></script>
-    <title>Document</title>
+    <script src="newtrip.js"></script>
+    <title>Post a new trip</title>
 </head>
 <body>
-
+<h1>Post a new trip</h1>
 <div>
+    <p>You must log in first</p>
     <label for="user">Username</label>
     <input type="text" name="user" id="user">
+    <br>
     <label for="email">Email</label>
     <input type="email" name="email" id="email">
-
+<br>
     <label for="password">Password</label>
     <input type="password" name="password" id="password">
 </div>
-
+<br>
 <div>
+    <p>Fill in the details for your trip</p>
     <label for="name">Give a name to your trip</label>
     <input type="text" name="name" id="name">
 </div>
@@ -70,4 +73,17 @@
 <div>
     <button onclick="getToken();">Create a trip</button>
 </div>
+<div id="tripsFetched"></div>
+<br>
+<a href="newtrip.html">Add a new trip</a>
+
+<a href="updatetrip.html">Update a trip</a>
+
+<a href="login.html">Login</a>
+
+<a href="logout.html">Log out</a>
+
+<a href="signup.html">Signup</a>
+
+
 </body>

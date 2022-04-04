@@ -5,69 +5,31 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <script src="script.js"></script>
+    <script src="updatetrip.js"></script>
     <title>Document</title>
 </head>
 <body>
+    <h1>Join a trip with fellow travelers!</h1>
+    <div id="tripsFetched"></div>
+    
+<br>
+ <a href="newtrip.html">Add a new trip</a>
 
-<div>
-    <label for="user">Username</label>
-    <input type="text" name="user" id="user">
-    <label for="email">Email</label>
-    <input type="email" name="email" id="email">
+ <a href="updatetrip.html">Update a trip</a>
 
-    <label for="password">Password</label>
-    <input type="password" name="password" id="password">
-</div>
+ <a href="login.html">Login</a>
 
-<div>
-    <label for="name">Give a name to your trip</label>
-    <input type="text" name="name" id="name">
-</div>
-<div>
-    <label for="description">Description</label>
-    <input type="text" name="description" id="description">
-</div>
-<div>
-    <label for="seats">Seats</label>
-    <input type="number" name="seats" id="seats">
-</div>
-<div>
-    <label for="tripDates-leaving">Leaving on:</label>
-    <input type="date" name="tripDates-leaving" id="tripDates-leaving" placeholder="Departure date">
-</div>
-<div>
-    <label for="tripDates-arriving">Arriving on</label>
-    <input type="date" name="tripDates-arriving" id="tripDates-arriving" placeholder="Arriving date">
-</div>
+ <a href="logout.html">Log out</a>
 
-<div>
-    <label for="leavingDestination">Leaving from:</label>
-    <input type="text" name="leavingDestination" id="leavingDestination" placeholder="the place you're leaving from">
-</div>
-<div>
-    <label for="betweenDestination">First stop:</label>
-    <input type="text" name="betweenDestination" id="betweenDestination">
-</div>
-<div>
-    <label for="betweenDestination2">Second stop:</label>
-    <input type="text" name="betweenDestination2" id="betweenDestination2">
-</div>
-<div>
-    <label for="betweenDestination3">Third stop:</label>
-    <input type="text" name="betweenDestination3" id="betweenDestination3">
-</div>
-<div>
-    <label for="arrivingDestination">Coming back to:</label>
-    <input type="text" name="arrivingDestination" id="arrivingDestination" placeholder="the place you're finishing your trip at">
-</div>
-<div>
-    <label for="tripMap2">Upload map</label>
-    <input type="file" name="tripMap2" id="tripMap2">
-</div>
-   
+ <a href="signup.html">Signup</a>
 
-<div>
-    <button onclick="getToken();">Create a trip</button>
-</div>
+<!-- <div>
+  <button onclick="getToken();">Create a trip</button> 
+</div> !-->
+
+
 </body>
+<script>
+getDataFromStrapi();</script>
+
+</html>
