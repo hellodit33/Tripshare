@@ -10,10 +10,9 @@
 </head>
 
 <body>
-  <h1>Join a trip with fellow travelers!</h1>
-    <div id="tripsFetched"></div>
-    
-<br>
+    <nav>
+        <a href="index.html">Find a trip</a>
+
  <a href="newtrip.html">Add a new trip</a>
 
  <a href="updatetrip.html">Update a trip</a>
@@ -23,11 +22,56 @@
  <a href="logout.html">Log out</a>
 
  <a href="signup.html">Signup</a>
+    </nav>
+    
+
+  <h1>Join a trip with fellow travelers!</h1>
+  <button id="button" onclick=fetchRelax();>Relax</button>
+  <button id="2" onclick=fetchWaterfalls();>Waterfalls</button>
+  <button onclick=fetchHiking();>Hiking</button>
+  <button onclick=fetchNorthernLights();>Northern Lights</button>
+  <button onclick=fetchGlacierWalk();>Glacier Walk</button>
+  <button onclick=fetchCamping();>Camping</button>
+  <button onclick=fetchWhaleWatching();>Whale Watching</button>
+  <button onclick=fetchSwimmingPool();>Swimming Pool</button>
+  <button onclick=fetchPhotography();>Photography</button>
+  <button onclick=fetchSpontaneousTrip();>Spontaneous Trip</button>
+  <button onclick=fetchSport();>Sport</button>
+  <button onclick=fetchParty();>Party</button>
+  <button onclick=fetchHotSprings();>Hot Springs</button>
+  <button onclick=fetchCouchsurfing();>Couchsurfing</button>
+  <button onclick=fetchFarmStay();>Farm Stay</button>
+
+  <br><br>
+  <button onclick=fetchNorth();>North</button>
+  <button onclick=fetchSouth();>South</button>
+  <button onclick=fetchGoldenCircle();>Golden Circle</button>  
+  <button onclick=fetchHiddenGem();>Hidden Gem</button>
+  <button onclick=fetchSnaefellsnes();>Snaefellsnes</button>
+  <button onclick=fetchRingRoad();>Ring Road</button>
+  <button onclick=fetchMountainTrip();>Mountain Trip</button>
+  <button onclick=fetchFjords();>Fjords</button>
+
+
+
+
+
+
+
+
+
+
+
+    <div id="tripsFetched"></div>
+
+    
+<br>
 
 
 </body>
 <script>
     getDataFromStrapi();
+    
 </script> 
 
 </html>

@@ -36,7 +36,7 @@
             output += `
             <div class="trip" data-id=${element.id}>
             
-            <h1 class="trip-name">${obj.tripName}</h2>
+            <h2 class="trip-name">${obj.tripName}</h2>
             
             <p>Description: </p><p class="trip-description">${obj.tripDescription}</p>
 
