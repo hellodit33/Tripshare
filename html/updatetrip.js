@@ -144,7 +144,7 @@ async function getDataFromStrapi() {
        
         <div>
         <label for="name">Give a name to your trip</label>
-        <input type="text" name="name" id="name" onchange="tripNameValidate(this)">
+        <input type="text" name="name" id="name" onchange="tripNameValidate(this);">
         <div id="tripNameError" class="errorInfo"></div>
         </div>
         <div>
