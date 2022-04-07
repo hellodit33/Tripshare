@@ -149,7 +149,8 @@ async function getDataFromStrapi() {
         </div>
         <div>
         <label for="description">Description</label>
-        <input type="text" name="description" id="description">
+        <input type="text" name="description" id="description" onchange="tripDescriptionValidate(this);">
+        <div id="tripDescriptionError" class="errorInfo"></div>
         </div>
         <div>
         <label for="seats">Seats</label>
@@ -166,7 +167,8 @@ async function getDataFromStrapi() {
         
         <div>
         <label for="leavingDestination">Leaving from:</label>
-        <input type="text" name="leavingDestination" id="leavingDestination" placeholder="the place you're leaving from">
+        <input type="text" name="leavingDestination" id="leavingDestination" placeholder="the place you're leaving from" onchange="tripLeavingDestinationValidate(this);">
+        <div id="tripLeavingDestinationError" class="errorInfo"></div>
         </div>
         <div>
         <label for="betweenDestination">First stop:</label>
@@ -182,7 +184,8 @@ async function getDataFromStrapi() {
         </div>
         <div>
         <label for="arrivingDestination">Coming back to:</label>
-        <input type="text" name="arrivingDestination" id="arrivingDestination" placeholder="the place you're finishing your trip at">
+        <input type="text" name="arrivingDestination" id="arrivingDestination" placeholder="the place you're finishing your trip at" onchange="tripArrivingDestinationValidate(this);">
+        <div id="tripArrivingDestinationError" class="errorInfo"></div>
         </div>
         <div>
         <label for="tripMap2">Upload map</label>
@@ -505,6 +508,72 @@ function tripNameValidate(comp) {
     return valid;
 }
 
+//Funktion för validering av Trip Name
+function tripDescriptionValidate(comp) {
+    // 1. Fältet måste innehålla ett värde
+    
+
+    let valid = true;
+
+    //CHeck om value är större än 0
+    if (comp.value.length == 0) {
+        //Felaktig validering
+        valid = false;
+        document.getElementById("tripDescriptionError").innerText = "Please describe your trip";
+    }
+
+  
+    if (valid) {
+        document.getElementById("tripDescriptionError").innerText = "";
+    }
+
+    return valid;
+}
+
+//Funktion för validering av Trip Name
+function tripLeavingDestinationValidate(comp) {
+    // 1. Fältet måste innehålla ett värde
+    // 2. Fältet får inte vara ett nummer
+
+    let valid = true;
+
+    //CHeck om value är större än 0
+    if (comp.value.length == 0) {
+        //Felaktig validering
+        valid = false;
+        document.getElementById("tripLeavingDestinationError").innerText = "Please tell fellow travelers where you will be leaving";
+    }
+
+  
+    if (valid) {
+        document.getElementById("tripLeavingDestinationError").innerText = "";
+    }
+
+    return valid;
+}
+
+
+//Funktion för validering av Trip Name
+function tripArrivingDestinationValidate(comp) {
+    // 1. Fältet måste innehålla ett värde
+    // 2. Fältet får inte vara ett nummer
+
+    let valid = true;
+
+    //CHeck om value är större än 0
+    if (comp.value.length == 0) {
+        //Felaktig validering
+        valid = false;
+        document.getElementById("tripArrivingDestinationError").innerText = "Please tell fellow travelers where you will be arriving";
+    }
+
+  
+    if (valid) {
+        document.getElementById("tripArrivingDestinationError").innerText = "";
+    }
+
+    return valid;
+}
 //FUnktion för validering av Trip Name
 function validateTrips() {
     let valid = true;
@@ -514,12 +583,25 @@ function validateTrips() {
         valid = false;
     }
 
-    //TODO - Skapa validering för Type och Level
+    //Validate TripName
+    if ( !tripDescriptionValidate(document.getElementById("description")) ) {
+        valid = false;
+    }
+
+     //Validate TripName
+     if ( !tripLeavingDestinationValidate(document.getElementById("leavingDestination")) ) {
+        valid = false;
+    }
+
+      //Validate TripName
+      if ( !tripArrivingDestinationValidate(document.getElementById("arrivingDestination")) ) {
+        valid = false;
+    }
 
     return valid;
 }
 
-
+   
 
 
 

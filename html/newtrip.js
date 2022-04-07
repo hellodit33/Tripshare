@@ -362,6 +362,72 @@ function tripNameValidate(comp) {
     return valid;
 }
 
+//Funktion för validering av Trip Name
+function tripDescriptionValidate(comp) {
+    // 1. Fältet måste innehålla ett värde
+    
+
+    let valid = true;
+
+    //CHeck om value är större än 0
+    if (comp.value.length == 0) {
+        //Felaktig validering
+        valid = false;
+        document.getElementById("tripDescriptionError").innerText = "Please describe your trip";
+    }
+
+  
+    if (valid) {
+        document.getElementById("tripDescriptionError").innerText = "";
+    }
+
+    return valid;
+}
+
+//Funktion för validering av Trip Name
+function tripLeavingDestinationValidate(comp) {
+    // 1. Fältet måste innehålla ett värde
+    // 2. Fältet får inte vara ett nummer
+
+    let valid = true;
+
+    //CHeck om value är större än 0
+    if (comp.value.length == 0) {
+        //Felaktig validering
+        valid = false;
+        document.getElementById("tripLeavingDestinationError").innerText = "Please tell fellow travelers where you will be leaving";
+    }
+
+  
+    if (valid) {
+        document.getElementById("tripLeavingDestinationError").innerText = "";
+    }
+
+    return valid;
+}
+
+
+//Funktion för validering av Trip Name
+function tripArrivingDestinationValidate(comp) {
+    // 1. Fältet måste innehålla ett värde
+    // 2. Fältet får inte vara ett nummer
+
+    let valid = true;
+
+    //CHeck om value är större än 0
+    if (comp.value.length == 0) {
+        //Felaktig validering
+        valid = false;
+        document.getElementById("tripArrivingDestinationError").innerText = "Please tell fellow travelers where you will be arriving";
+    }
+
+  
+    if (valid) {
+        document.getElementById("tripArrivingDestinationError").innerText = "";
+    }
+
+    return valid;
+}
 //FUnktion för validering av Trip Name
 function validateTrips() {
     let valid = true;
@@ -371,7 +437,20 @@ function validateTrips() {
         valid = false;
     }
 
-    //TODO - Skapa validering för Type och Level
+    //Validate TripName
+    if ( !tripDescriptionValidate(document.getElementById("description")) ) {
+        valid = false;
+    }
+
+     //Validate TripName
+     if ( !tripLeavingDestinationValidate(document.getElementById("leavingDestination")) ) {
+        valid = false;
+    }
+
+      //Validate TripName
+      if ( !tripArrivingDestinationValidate(document.getElementById("arrivingDestination")) ) {
+        valid = false;
+    }
 
     return valid;
 }

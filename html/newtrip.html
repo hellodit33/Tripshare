@@ -42,12 +42,13 @@
 <div>
     <p>Fill in the details for your trip</p>
     <label for="name">Give a name to your trip</label>
-    <input type="text" name="name" id="name" onchange="tripNameValidate(this)">
+    <input type="text" name="name" id="name" onchange="tripNameValidate(this);">
     <div id="tripNameError" class="errorInfo"></div>
 </div>
 <div>
     <label for="description">Description</label>
-    <input type="text" name="description" id="description">
+    <input type="text" name="description" id="description" onchange="tripDescriptionValidate(this);">
+    <div id="tripDescriptionError" class="errorInfo"></div>
 </div>
 <div>
     <label for="seats">Seats</label>
@@ -64,7 +65,8 @@
 
 <div>
     <label for="leavingDestination">Leaving from:</label>
-    <input type="text" name="leavingDestination" id="leavingDestination" placeholder="the place you're leaving from">
+    <input type="text" name="leavingDestination" id="leavingDestination" placeholder="the place you're leaving from" onchange="tripLeavingDestinationValidate(this);">
+    <div id="tripLeavingDestinationError" class="errorInfo"></div>
 </div>
 <div>
     <label for="betweenDestination">First stop:</label>
@@ -80,7 +82,8 @@
 </div>
 <div>
     <label for="arrivingDestination">Coming back to:</label>
-    <input type="text" name="arrivingDestination" id="arrivingDestination" placeholder="the place you're finishing your trip at">
+    <input type="text" name="arrivingDestination" id="arrivingDestination" placeholder="the place you're finishing your trip at" onchange="tripArrivingDestinationValidate(this);">
+    <div id="tripArrivingDestinationError" class="errorInfo"></div>
 </div>
 <div>
     <label for="tripMap2">Upload map</label>
