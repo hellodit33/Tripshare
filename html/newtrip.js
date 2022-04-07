@@ -59,7 +59,7 @@
             
          <p>The map is missing</p>
             
-            <button id="edit">Edit</button>
+           
           
             
        
@@ -90,7 +90,7 @@
        <p>Available Seats: </p><p class="trip-seats">${obj.Seats}</p> <br>
 
         <img src=${apiUrl}${obj.tripMap2.data[0].attributes.formats.large.url} class="trip-image"/> 
-        <button id="edit">Edit</button>
+     
         
        
         </div>
@@ -165,7 +165,7 @@ async function getToken() {
 
     else {
         //Inloggningen har misslyckats. Skriv ut errormeddelande från Strapi.js
-        let errMessage = userJson.error.message;
+        //let errMessage = userJson.error.message;
 
         document.getElementById("userError").innerText = "Unfortunately it did not work";
 
@@ -267,6 +267,29 @@ function userValidate(comp) {
     }
 }
 
+
+
+function emailValidate(comp)
+{
+valid=false;
+    var mailformat = /^([A-Za-z0-9_\-\.])+\@([A-Za-z0-9_\-\.])+\.([A-Za-z]{2,4})$/;
+
+    if(comp.value.match(mailformat)) 
+    {
+        valid = true;
+    }
+
+
+
+if(!valid) {
+    document.getElementById("emailError").innerText = "This email address is not valid";
+    return false;
+} else {
+    document.getElementById("emailError").innerText = "";
+    return true;
+}
+}
+
 //Validering av Password input
 function passwordValidate(comp) {
     // 1. Fältet måste vara minst 5 tecken eller längre
@@ -295,6 +318,11 @@ function validateLogin() {
 
     //Validate Användarnamn
     if (!userValidate(document.getElementById("user"))) {
+        valid = false;
+    }
+
+     //Validate Email
+     if (!emailValidate(document.getElementById("email"))) {
         valid = false;
     }
 

@@ -128,18 +128,24 @@ async function getDataFromStrapi() {
         const parent = e.target.parentElement;
         parent.innerHTML +=`<div>
         <label for="user">Username</label>
-        <input type="text" name="user" id="user">
+        <input type="text" name="user" id="user" onchange="userValidate(this);">
+        <div id="userError" class="errorInfo"></div>
+        <br>
         <label for="email">Email</label>
-        <input type="email" name="email" id="email">
+        <input type="email" name="email" id="email" onchange="emailValidate(this);">
+        <div id="emailError" class="errorInfo"></div>
+        <br>
         
         <label for="password">Password</label>
-        <input type="password" name="password" id="password">
-        </div>
-        <div id="userError" class="errorInfo"></div>
+        <input type="password" name="password" id="password" onchange="passwordValidate(this);">
+        <div id="passwordError" class="errorInfo"></div>
         
+        </div>
+       
         <div>
         <label for="name">Give a name to your trip</label>
-        <input type="text" name="name" id="name">
+        <input type="text" name="name" id="name" onchange="tripNameValidate(this)">
+        <div id="tripNameError" class="errorInfo"></div>
         </div>
         <div>
         <label for="description">Description</label>
@@ -233,6 +239,16 @@ async function getToken() {
     //2. Sammla data och skapa ett objekt av dessa
     //3. Skicka iväg JSON till API /
     
+    let valid = true;
+
+    //Validera användarnamn och lösenord!
+    if ( !validateLogin() ) valid = false;
+
+    //Validera TripData
+    if ( !validateTrips() ) valid = false;
+
+    if (!valid) return null;
+
     //Url till Strapi.js UserList
     const urlUser = "http://localhost:1337/api/auth/local/";
     
@@ -268,9 +284,9 @@ async function getToken() {
     if (userJson.jwt) return userJson.jwt;
     else {
         //Inloggningen har misslyckats. Skriv ut errormeddelande från Strapi.js
-        let errMessage = userJson.error.message;
+       // let errMessage = userJson.error.message;
 
-        document.getElementById("userError").innerText = errMessage;
+        document.getElementById("userError").innerText = "Unfortunately it did not work";
 
         return null;
     }
@@ -372,6 +388,136 @@ const arrivingDestination = document.getElementById("arrivingDestination").value
     
 }
 
+ //Funktioner för validering
+//Validering av User Input
+function userValidate(comp) {
+    // 1. Fältet måste vara ifyllt
+
+    let valid = true;
+
+    if (comp.value.length == 0) {
+        //Misslyckad validering
+        valid = false;
+    }
+
+    //Check on lyckad validering
+    if (!valid) {
+        document.getElementById("userError").innerText = "Please write your username";
+        return false;
+    } else {
+        document.getElementById("userError").innerText = "";
+        return true;
+    }
+}
+
+
+
+function emailValidate(comp)
+{
+valid=false;
+    var mailformat = /^([A-Za-z0-9_\-\.])+\@([A-Za-z0-9_\-\.])+\.([A-Za-z]{2,4})$/;
+
+    if(comp.value.match(mailformat)) 
+    {
+        valid = true;
+    }
+
+
+
+if(!valid) {
+    document.getElementById("emailError").innerText = "This email address is not valid";
+    return false;
+} else {
+    document.getElementById("emailError").innerText = "";
+    return true;
+}
+}
+
+//Validering av Password input
+function passwordValidate(comp) {
+    // 1. Fältet måste vara minst 5 tecken eller längre
+
+    let valid = true;
+
+    if (comp.value.length <= 4) {
+        //Misslyckad validering
+        valid = false;
+    }
+
+    //Check on lyckad validering
+    if (!valid) {
+        document.getElementById("passwordError").innerText = "Please write a password of minimum 5 characters";
+        return false;
+    } else {
+        document.getElementById("passwordError").innerText = "";
+        return true;
+    }
+}
+
+//funktion för validering av inloggninfsförsök
+function validateLogin() {
+    //Variabel
+    let valid = true;
+
+    //Validate Användarnamn
+    if (!userValidate(document.getElementById("user"))) {
+        valid = false;
+    }
+
+     //Validate Email
+     if (!emailValidate(document.getElementById("email"))) {
+        valid = false;
+    }
+
+    //Validate Password
+    if (!passwordValidate(document.getElementById("password"))) {
+        valid = false;
+    }
+
+    return valid;
+}
+
+//Funktion för validering av Trip Name
+function tripNameValidate(comp) {
+    // 1. Fältet måste innehålla ett värde
+    // 2. Fältet får inte vara ett nummer
+
+    let valid = true;
+
+    //CHeck om value är större än 0
+    if (comp.value.length == 0) {
+        //Felaktig validering
+        valid = false;
+        document.getElementById("tripNameError").innerText = "Please give a name to your trip";
+    }
+
+    //CHeck att värdet inte är ett nummer
+    if ( !isNaN( comp.value ) && comp.value.length != 0) {
+        //Felaktig validering
+        valid = false;
+        document.getElementById("tripNameError").innerText = "The name cannot contain numbers";
+    }
+
+    if (valid) {
+        document.getElementById("tripNameError").innerText = "";
+    }
+
+    return valid;
+}
+
+//FUnktion för validering av Trip Name
+function validateTrips() {
+    let valid = true;
+
+    //Validate TripName
+    if ( !tripNameValidate(document.getElementById("name")) ) {
+        valid = false;
+    }
+
+    //TODO - Skapa validering för Type och Level
+
+    return valid;
+}
 
 
 
