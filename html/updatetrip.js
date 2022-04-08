@@ -43,8 +43,8 @@ async function getDataFromStrapi() {
                 
                 <h2 class="trip-name">${obj.tripName}</h2>
                 <p>Leaving- and arriving date: </p>
-                    <p class="trip-leavingdate">${obj.TripDates.LeavingDate}</p>
-                    <p class="trip-arrivingdate">${obj.TripDates.ArrivingDate}</p>
+                <p class="trip-leavingdate">${new Date(obj.TripDates.LeavingDate).toJSON().substring(0,10)}</p>
+                <p class="trip-arrivingdate">${new Date(obj.TripDates.ArrivingDate).toJSON().substring(0,10)}</p>
                     <p>Available Seats: </p>
                     <p class="trip-seats">${obj.Seats}</p>
     
@@ -102,8 +102,8 @@ async function getDataFromStrapi() {
             <div class="column">
             <h2 class="trip-name">${obj.tripName}</h2>
             <p>Leaving- and arriving date: </p>
-            <p class="trip-leavingdate">${obj.TripDates.LeavingDate}</p>
-            <p class="trip-arrivingdate">${obj.TripDates.ArrivingDate}</p>
+            <p class="trip-leavingdate">${new Date(obj.TripDates.LeavingDate).toJSON().substring(0,10)}</p>
+            <p class="trip-arrivingdate">${new Date(obj.TripDates.ArrivingDate).toJSON().substring(0,10)}</p>
                 <p>Available Seats: </p>
                 <p class="trip-seats">${obj.Seats}</p>
 
@@ -179,52 +179,64 @@ async function getDataFromStrapi() {
         const parent = e.target.parentElement;
         parent.innerHTML +=`
     
-        <div>
-        <br>
-        <label for="user">Username</label><br>
+        
+        <div class="kontakta">
+
+    <p class="titel">Log in to continue</p>
+        <label for="user">Username:</label><br>
         <input type="text" name="user" id="user" placeholder="Username" onchange="userValidate(this);">
         <div id="userError" class="errorInfo"></div>
         <br>
 
-        <label for="email">Email</label><br>
+        <label for="email">Email:</label><br>
         <input type="email" name="email" id="email" placeholder="Email" onchange="emailValidate(this);">
         <div id="emailError" class="errorInfo"></div>
         <br>
 
-        <label for="password">Password</label><br>
+        <label for="password">Password:</label><br>
         <input type="password" name="password" id="password" placeholder="Password" onchange="passwordValidate(this);">
         <div id="passwordError" class="errorInfo"></div>
         </div>
        
         <div>
         <br>
-        <label for="name">Give a name to your trip</label><br>
+        <p class="titel">Fill in the details for your trip</p>
+        <label for="name">Give a name to your trip:</label><br>
         <input type="text" name="name" id="name" placeholder="" onchange="tripNameValidate(this);">
         <div id="tripNameError" class="errorInfo"></div>
         </div>
 
         <div>
         <br>
-        <label for="description">Description</label><br>
+        <label for="description">Description:</label><br>
         <input type="text" name="description" id="description" onchange="tripDescriptionValidate(this);">
         <div id="tripDescriptionError" class="errorInfo"></div>
         </div>
 
         <div>
         <br>
+        <form name="newtripseats">
         <label for="seats">Seats</label><br>
-        <input type="number" name="seats" id="seats">
+        <input type="number" name="seats" id="seats" onchange="tripSeatsValidate(this);">
+        <div id="tripSeatsError" class="errorInfo"></div>
+        </form>
         </div>
 
         <div>
         <br>
+        <form name="newtripleaving">
         <label for="tripDates-leaving">Leaving on:</label><br>
-        <input type="date" name="tripDates-leaving" id="tripDates-leaving" placeholder="Departure date">
+        <input type="date" name="tripDates-leaving" id="tripDates-leaving" placeholder="Departure date" onchange="tripLeavingDatesValidate(this);">
+        <div id="tripLeavingDateError" class="errorInfo"></div>
+        </form>
         </div>
         
         <div>
+        <form name="newtriparriving">
         <label for="tripDates-arriving">Arriving on</label><br>
-        <input type="date" name="tripDates-arriving" id="tripDates-arriving" placeholder="Arriving date">
+        <input type="date" name="tripDates-arriving" id="tripDates-arriving" placeholder="Arriving date"onchange="tripArrivingDatesValidate(this);">
+        <div id="tripArrivingDateError" class="errorInfo"></div>
+        </form>
         </div>
         
         <div>
@@ -235,26 +247,29 @@ async function getDataFromStrapi() {
         </div>
 
         <div>
+        <label for="leavingDestination">First Destination:</label><br>
         <input type="text" name="betweenDestination" placeholder="First stop" id="betweenDestination">
         </div>
 
         <div>
+        <label for="leavingDestination">Second Destination:</label><br>
         <input type="text" name="betweenDestination2" placeholder="Second stop" id="betweenDestination2">
         </div>
 
         <div>
+        <label for="leavingDestination">Third Destination:</label><br>
         <input type="text" name="betweenDestination3" placeholder="Third stop"id="betweenDestination3">
         </div>
 
         <div>
-        <br>
+        
         <label for="arrivingDestination">Coming back to:</label><br>
         <input type="text" name="arrivingDestination" id="arrivingDestination" placeholder="the place you're finishing your trip at" onchange="tripArrivingDestinationValidate(this);">
         <div id="tripArrivingDestinationError" class="errorInfo"></div>
         </div>
 
         <div>
-        <label for="tripMap2">Upload map</label>
+        <label for="tripMap2">Upload map</label><br>
         <input type="file" name="tripMap2" id="tripMap2">
         </div>
         
@@ -273,11 +288,10 @@ async function getDataFromStrapi() {
         let arrivingDestinationValue = document.getElementById('arrivingDestination');
         let seatsValue = document.getElementById('seats');
         
-        
         let tripName = parent.querySelector('.trip-name').textContent;
         let tripDescription = parent.querySelector('.trip-description').textContent;
-        let tripLeavingDate = parent.querySelector('.trip-leavingdate').dateContent;
-        let tripArrivingDate = parent.querySelector('.trip-arrivingdate').dateContent;
+        let tripLeavingDate = parent.querySelector('.trip-leavingdate').textContent;
+        let tripArrivingDate = parent.querySelector('.trip-arrivingdate').textContent;
         let tripLeavingDestination = parent.querySelector('.trip-leavingdestination').textContent;
         let tripBetweenDestination = parent.querySelector('.trip-betweendestination').textContent;
         let tripBetweenDestination2 = parent.querySelector('.trip-betweendestination2').textContent;
@@ -596,6 +610,59 @@ function tripDescriptionValidate(comp) {
 
     return valid;
 }
+//Funktion för validering av Trip Name
+function tripLeavingDatesValidate(comp) {
+    // 1. Fältet måste innehålla ett värde
+   let valid=true;
+
+    var comp = document.forms['newtripleaving']['tripDates-leaving'].value;
+             if( !comp.replace(/\s+/, '').length ) {
+                 valid=false;
+                 document.getElementById("tripLeavingDateError").innerText = "Please tell fellow travelers when you will be leaving";
+             }
+  
+    if (valid) {
+        document.getElementById("tripLeavingDateError").innerText = "";
+    }
+
+    return valid;
+}
+
+//Funktion för validering av Trip Name
+function tripArrivingDatesValidate(comp) {
+    // 1. Fältet måste innehålla ett värde
+   let valid=true;
+
+    var comp = document.forms['newtriparriving']['tripDates-arriving'].value;
+             if( !comp.replace(/\s+/, '').length ) {
+                 valid=false;
+                 document.getElementById("tripArrivingDateError").innerText = "Please tell fellow travelers when you will be coming back";
+             }
+  
+    if (valid) {
+        document.getElementById("tripArrivingDateError").innerText = "";
+    }
+
+    return valid;
+}
+
+//Funktion för validering av Trip Name
+function tripSeatsValidate(comp) {
+    // 1. Fältet måste innehålla ett värde
+   let valid=true;
+
+    var comp = document.forms['newtripseats']['seats'].value;
+             if( !comp.replace(/\s+/, '').length ) {
+                 valid=false;
+                 document.getElementById("tripSeatsError").innerText = "Please indicate the number of available seats on this trip";
+             }
+  
+    if (valid) {
+        document.getElementById("tripSeatsError").innerText = "";
+    }
+
+    return valid;
+}
 
 //Funktion för validering av Trip Name
 function tripLeavingDestinationValidate(comp) {
@@ -655,6 +722,20 @@ function validateTrips() {
         valid = false;
     }
 
+    //Validate TripName
+    if ( !tripLeavingDatesValidate(document.getElementById("tripDates-leaving")) ) {
+        valid = false;
+    }
+
+    //Validate TripName
+    if ( !tripArrivingDatesValidate(document.getElementById("tripDates-leaving")) ) {
+        valid = false;
+    }
+
+     //Validate TripName
+     if ( !tripSeatsValidate(document.getElementById("tripDates-leaving")) ) {
+        valid = false;
+    }
      //Validate TripName
      if ( !tripLeavingDestinationValidate(document.getElementById("leavingDestination")) ) {
         valid = false;
@@ -668,6 +749,7 @@ function validateTrips() {
     return valid;
 }
 
+   
    
 
 

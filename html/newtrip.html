@@ -5,8 +5,9 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <script src="newtrip.js"></script>
+   
     <link rel="stylesheet" href="style.css">
+    
     <title>Post a new trip</title>
 </head>
 <body>
@@ -25,6 +26,7 @@
 
 <h1>Post a new trip</h1>
 <div class="kontakta">
+
     <p class="titel">Log in to continue</p>
     <input type="text" name="user" id="user" placeholder="Username" onchange="userValidate(this);">
     <div id="userError" class="errorInfo"></div>
@@ -49,16 +51,26 @@
     <div id="tripDescriptionError" class="errorInfo"></div>
 </div><br>
 <div>
+    <form name="newtripseats">
     <label for="seats">Seats</label><br>
-    <input type="number" name="seats" id="seats">
+    <input type="number" name="seats" id="seats" onchange="tripSeatsValidate(this);">
+    <div id="tripSeatsError" class="errorInfo"></div>
+</form>
 </div><br>
 <div>
+    <form name="newtripleaving">
     <label for="tripDates-leaving">Leaving on:</label><br>
-    <input type="date" name="tripDates-leaving" id="tripDates-leaving" placeholder="Departure date">
+    <input type="date" name="tripDates-leaving" id="tripDates-leaving" placeholder="Departure date" onchange="tripLeavingDatesValidate(this);">
+    <div id="tripLeavingDateError" class="errorInfo"></div>
+</form>
 </div><br>
 <div>
+    <form name="newtriparriving">
     <label for="tripDates-arriving">Arriving on</label><br>
-    <input type="date" name="tripDates-arriving" id="tripDates-arriving" placeholder="Arriving date">
+    <input type="date" name="tripDates-arriving" id="tripDates-arriving" placeholder="Arriving date" onchange="tripArrivingDatesValidate(this);">
+    <div id="tripArrivingDateError" class="errorInfo"></div>
+
+</form>
 </div><br>
 
 <div>
@@ -87,6 +99,7 @@
     <label for="tripMap2">Upload map</label><br>
     <input type="file" name="tripMap2" id="tripMap2">
 </div><br>
+
    
 
 <div>
@@ -105,5 +118,8 @@
 
 <a href="signup.html">Signup</a>
 </nav>
+<script type = "text/JavaScript" src = "https://momentjs.com/downloads/moment.js"></script>
+<script src="newtrip.js"></script>
 
 </body>
+</html>

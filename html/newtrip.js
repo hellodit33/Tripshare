@@ -428,6 +428,60 @@ function tripDescriptionValidate(comp) {
 }
 
 //Funktion för validering av Trip Name
+function tripLeavingDatesValidate(comp) {
+    // 1. Fältet måste innehålla ett värde
+   let valid=true;
+
+    var comp = document.forms['newtripleaving']['tripDates-leaving'].value;
+             if( !comp.replace(/\s+/, '').length ) {
+                 valid=false;
+                 document.getElementById("tripLeavingDateError").innerText = "Please tell fellow travelers when you will be leaving";
+             }
+  
+    if (valid) {
+        document.getElementById("tripLeavingDateError").innerText = "";
+    }
+
+    return valid;
+}
+
+//Funktion för validering av Trip Name
+function tripArrivingDatesValidate(comp) {
+    // 1. Fältet måste innehålla ett värde
+   let valid=true;
+
+    var comp = document.forms['newtriparriving']['tripDates-arriving'].value;
+             if( !comp.replace(/\s+/, '').length ) {
+                 valid=false;
+                 document.getElementById("tripArrivingDateError").innerText = "Please tell fellow travelers when you will be coming back";
+             }
+  
+    if (valid) {
+        document.getElementById("tripArrivingDateError").innerText = "";
+    }
+
+    return valid;
+}
+
+//Funktion för validering av Trip Name
+function tripSeatsValidate(comp) {
+    // 1. Fältet måste innehålla ett värde
+   let valid=true;
+
+    var comp = document.forms['newtripseats']['seats'].value;
+             if( !comp.replace(/\s+/, '').length ) {
+                 valid=false;
+                 document.getElementById("tripSeatsError").innerText = "Please indicate the number of available seats on this trip";
+             }
+  
+    if (valid) {
+        document.getElementById("tripSeatsError").innerText = "";
+    }
+
+    return valid;
+}
+
+//Funktion för validering av Trip Name
 function tripLeavingDestinationValidate(comp) {
     // 1. Fältet måste innehålla ett värde
     // 2. Fältet får inte vara ett nummer
@@ -485,6 +539,20 @@ function validateTrips() {
         valid = false;
     }
 
+    //Validate TripName
+    if ( !tripLeavingDatesValidate(document.getElementById("tripDates-leaving")) ) {
+        valid = false;
+    }
+
+    //Validate TripName
+    if ( !tripArrivingDatesValidate(document.getElementById("tripDates-leaving")) ) {
+        valid = false;
+    }
+
+    //Validate TripName
+    if ( !tripSeatsValidate(document.getElementById("tripDates-leaving")) ) {
+        valid = false;
+    }
      //Validate TripName
      if ( !tripLeavingDestinationValidate(document.getElementById("leavingDestination")) ) {
         valid = false;
