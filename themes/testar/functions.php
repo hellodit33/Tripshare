@@ -41,6 +41,13 @@ add_action('wp_enqueue_scripts', 'tripshare_register_styles');
 
 function tripshare_register_scripts() {
 
+wp_enqueue_script('tripshare-findatrip', get_template_directory_uri()."/assets/js/index.js", array(), '1.0', false);
+
+wp_enqueue_script('tripshare-newtrip', get_template_directory_uri()."/assets/js/newtrip.js", array(), '1.0', false);
+
+wp_enqueue_script('tripshare-updatetrip', get_template_directory_uri()."/assets/js/updatetrip.js", array(), '1.0', false);
+
+
 }
 
 add_action('wp_enqueue_scripts', 'tripshare_register_scripts');
