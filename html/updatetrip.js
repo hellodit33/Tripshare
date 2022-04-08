@@ -32,66 +32,95 @@ async function getDataFromStrapi() {
             if (!obj.tripMap2.data) {
             //Skriver Output string
            
-            output += `
-            <div class="trip" data-id=${element.id}>
-            
-            <h2 class="trip-name">${obj.tripName}</h2>
-            
-            <p>Description: </p><p class="trip-description">${obj.tripDescription}</p>
+            output += `<div data-id=${element.id}>
+        
 
-            <p>Leaving Date: </p><p class="trip-leavingdate">${obj.TripDates.LeavingDate} </p>
-           
-            <p>Arriving Date: </p><p class="trip-arrivingdate">${obj.TripDates.ArrivingDate} </p> 
-            
-            <p>Leaving From: </p> <p class="trip-leavingdestination">${obj.TripDestinations.LeavingDestination}</p> 
-    
-            <p>First Destination: </p> <p class="trip-betweendestination">${obj.TripDestinations.BetweenDestination}</p> 
-            
-            <p>Second Destination: </p> <p class="trip-betweendestination2">${obj.TripDestinations.BetweenDestination2}</p> 
-    
-            <p>Third Destination: </p> <p class="trip-betweendestination3">${obj.TripDestinations.BetweenDestination3}</p> 
-    
-            <p>Finishing At: </p> <p class="trip-arrivingdestination">${obj.TripDestinations.ArrivingDestination}</p> 
+            <div class="kolumner">
+            <div class="row">
+                <div class="column">
+                <h2 class="trip-name">${obj.tripName}</h2>
+                <p>Leaving- and arriving date: </p>
+                    <p class="trip-leavingdate">${obj.TripDates.LeavingDate} - ${obj.TripDates.ArrivingDate} </p>
+                    <p>Available Seats: </p>
+                    <p class="trip-seats">${obj.Seats}</p>
     
             
-           <p>Available Seats: </p><p class="trip-seats">${obj.Seats}</p>
-            
-         <p>The map is missing</p>
-            
-            <button id="edit">Edit</button>
-          
-            
-       
             </div>
-            
+                <div class="column">
+                <p>Description: </p>
+                <p class="trip-description">${obj.tripDescription}</p>
+                <p>Leaving From: </p>
+                <p class="trip-leavingdestination">${obj.TripDestinations.LeavingDestination}</p> 
+        </div>
+    
+                <table>
+                    <tr>
+                    <th><p>First Destination:</p></th>
+                    <th><p>Second Destination:</p></th>
+                    <th><p>Third Destination:</p></th>
+                    <th><p>Finishing At:</p></th>
+                    </tr>
+    
+                    <tr>
+                        <td><p class="trip-betweendestination">${obj.TripDestinations.BetweenDestination}</p></td>
+                        <td><p class="trip-betweendestination2">${obj.TripDestinations.BetweenDestination2}</p></td>
+                        <td><p class="trip-betweendestination3">${obj.TripDestinations.BetweenDestination3}</p></td>
+                        <td><p class="trip-arrivingdestination">${obj.TripDestinations.ArrivingDestination}</p></td>
+                    </tr>
+                </table>
+                <p>The map has not been downloaded by the user.</p>
+                <button id="edit">Edit</button>
+            </div>
+           
+    </div>
+            </div>
+             
             `;
         }
+    
     
     else if (obj.tripMap2.data) {
     //if the user did not add any map
             //Skriver Output string without map
         output += `<div data-id=${element.id}>
-         <h2 class="trip-name">${obj.tripName}</h2>
-        <p>Description: </p><p class="trip-description">${obj.tripDescription}</p><p>Leaving Date: </p><p class="trip-leavingdate">${obj.TripDates.LeavingDate} </p>
-       <p>Arriving Date: </p><p class="trip-arrivingdate">${obj.TripDates.ArrivingDate} </p> 
-        
-        <p>Leaving From: </p> <p class="trip-leavingdestination">${obj.TripDestinations.LeavingDestination}</p> 
 
-        <p>First Destination: </p> <p class="trip-betweendestination">${obj.TripDestinations.BetweenDestination}</p> 
-        
-        <p>Second Destination: </p> <p class="trip-betweendestination2">${obj.TripDestinations.BetweenDestination2}</p> 
-
-        <p>Third Destination: </p> <p class="trip-betweendestination3">${obj.TripDestinations.BetweenDestination3}</p> 
-
-        <p>Finishing At: </p> <p class="trip-arrivingdestination">${obj.TripDestinations.ArrivingDestination}</p> 
+        <div class="kolumner">
+        <div class="row">
+            <div class="column">
+            <h2 class="trip-name">${obj.tripName}</h2>
+            <p>Leaving- and arriving date: </p>
+                <p class="trip-leavingdate">${obj.TripDates.LeavingDate} - ${obj.TripDates.ArrivingDate} </p>
+                <p>Available Seats: </p>
+                <p class="trip-seats">${obj.Seats}</p>
 
         
-       <p>Available Seats: </p><p class="trip-seats">${obj.Seats}</p> <br>
+        </div>
+            <div class="column">
+            <p>Description: </p>
+            <p class="trip-description">${obj.tripDescription}</p>
+            <p>Leaving From: </p>
+            <p class="trip-leavingdestination">${obj.TripDestinations.LeavingDestination}</p> 
+    </div>
 
-        <img src=${apiUrl}${obj.tripMap2.data[0].attributes.formats.large.url} class="trip-image"/> 
+            <table>
+                <tr>
+                <th><p>First Destination:</p></th>
+                <th><p>Second Destination:</p></th>
+                <th><p>Third Destination:</p></th>
+                <th><p>Finishing At:</p></th>
+                </tr>
+
+                <tr>
+                    <td><p class="trip-betweendestination">${obj.TripDestinations.BetweenDestination}</p></td>
+                    <td><p class="trip-betweendestination2">${obj.TripDestinations.BetweenDestination2}</p></td>
+                    <td><p class="trip-betweendestination3">${obj.TripDestinations.BetweenDestination3}</p></td>
+                    <td><p class="trip-arrivingdestination">${obj.TripDestinations.ArrivingDestination}</p></td>
+                </tr>
+            </table>
+            <img src=${apiUrl}${obj.tripMap2.data[0].attributes.formats.large.url} class="trip-image"/> 
+        </div><br>
         <button id="edit">Edit</button>
-        
-       
+    </div>
         </div>
          
         `;
@@ -126,71 +155,87 @@ async function getDataFromStrapi() {
     } */
     if(editButtonIsPressed) {
         const parent = e.target.parentElement;
-        parent.innerHTML +=`<div>
-        <label for="user">Username</label>
-        <input type="text" name="user" id="user" onchange="userValidate(this);">
+        parent.innerHTML +=`
+    
+        <div>
+        <br>
+        <label for="user">Username</label><br>
+        <input type="text" name="user" id="user" placeholder="Username" onchange="userValidate(this);">
         <div id="userError" class="errorInfo"></div>
         <br>
-        <label for="email">Email</label>
-        <input type="email" name="email" id="email" onchange="emailValidate(this);">
+
+        <label for="email">Email</label><br>
+        <input type="email" name="email" id="email" placeholder="Email" onchange="emailValidate(this);">
         <div id="emailError" class="errorInfo"></div>
         <br>
-        
-        <label for="password">Password</label>
-        <input type="password" name="password" id="password" onchange="passwordValidate(this);">
+
+        <label for="password">Password</label><br>
+        <input type="password" name="password" id="password" placeholder="Password" onchange="passwordValidate(this);">
         <div id="passwordError" class="errorInfo"></div>
-        
         </div>
        
         <div>
-        <label for="name">Give a name to your trip</label>
-        <input type="text" name="name" id="name" onchange="tripNameValidate(this);">
+        <br>
+        <label for="name">Give a name to your trip</label><br>
+        <input type="text" name="name" id="name" placeholder="" onchange="tripNameValidate(this);">
         <div id="tripNameError" class="errorInfo"></div>
         </div>
+
         <div>
-        <label for="description">Description</label>
+        <br>
+        <label for="description">Description</label><br>
         <input type="text" name="description" id="description" onchange="tripDescriptionValidate(this);">
         <div id="tripDescriptionError" class="errorInfo"></div>
         </div>
+
         <div>
-        <label for="seats">Seats</label>
+        <br>
+        <label for="seats">Seats</label><br>
         <input type="number" name="seats" id="seats">
         </div>
+
         <div>
-        <label for="tripDates-leaving">Leaving on:</label>
+        <br>
+        <label for="tripDates-leaving">Leaving on:</label><br>
         <input type="date" name="tripDates-leaving" id="tripDates-leaving" placeholder="Departure date">
         </div>
+        
         <div>
-        <label for="tripDates-arriving">Arriving on</label>
+        <label for="tripDates-arriving">Arriving on</label><br>
         <input type="date" name="tripDates-arriving" id="tripDates-arriving" placeholder="Arriving date">
         </div>
         
         <div>
-        <label for="leavingDestination">Leaving from:</label>
+        <br>
+        <label for="leavingDestination">Leaving from:</label><br>
         <input type="text" name="leavingDestination" id="leavingDestination" placeholder="the place you're leaving from" onchange="tripLeavingDestinationValidate(this);">
         <div id="tripLeavingDestinationError" class="errorInfo"></div>
         </div>
+
         <div>
-        <label for="betweenDestination">First stop:</label>
-        <input type="text" name="betweenDestination" id="betweenDestination">
+        <input type="text" name="betweenDestination" placeholder="First stop" id="betweenDestination">
         </div>
+
         <div>
-        <label for="betweenDestination2">Second stop:</label>
-        <input type="text" name="betweenDestination2" id="betweenDestination2">
+        <input type="text" name="betweenDestination2" placeholder="Second stop" id="betweenDestination2">
         </div>
+
         <div>
-        <label for="betweenDestination3">Third stop:</label>
-        <input type="text" name="betweenDestination3" id="betweenDestination3">
+        <input type="text" name="betweenDestination3" placeholder="Third stop"id="betweenDestination3">
         </div>
+
         <div>
-        <label for="arrivingDestination">Coming back to:</label>
+        <br>
+        <label for="arrivingDestination">Coming back to:</label><br>
         <input type="text" name="arrivingDestination" id="arrivingDestination" placeholder="the place you're finishing your trip at" onchange="tripArrivingDestinationValidate(this);">
         <div id="tripArrivingDestinationError" class="errorInfo"></div>
         </div>
+
         <div>
         <label for="tripMap2">Upload map</label>
         <input type="file" name="tripMap2" id="tripMap2">
         </div>
+        
         <button onclick="updateTrip()" id="button">Update a trip</button>
         <button id="delete" onclick="deleteTrip();">Delete</button>
         </div>

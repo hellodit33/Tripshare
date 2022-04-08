@@ -32,66 +32,94 @@ async function getDataFromStrapi() {
             if (!obj.tripMap2.data) {
             //Skriver Output string
            
-            output += `
-            <div class="trip" data-id=${element.id}>
-            
-            <h2 class="trip-name">${obj.tripName}</h2>
-            
-            <p>Description: </p><p class="trip-description">${obj.tripDescription}</p>
 
-            <p>Leaving Date: </p><p class="trip-leavingdate">${obj.TripDates.LeavingDate} </p>
-           
-            <p>Arriving Date: </p><p class="trip-arrivingdate">${obj.TripDates.ArrivingDate} </p> 
-            
-            <p>Leaving From: </p> <p class="trip-leavingdestination">${obj.TripDestinations.LeavingDestination}</p> 
-    
-            <p>First Destination: </p> <p class="trip-betweendestination">${obj.TripDestinations.BetweenDestination}</p> 
-            
-            <p>Second Destination: </p> <p class="trip-betweendestination2">${obj.TripDestinations.BetweenDestination2}</p> 
-    
-            <p>Third Destination: </p> <p class="trip-betweendestination3">${obj.TripDestinations.BetweenDestination3}</p> 
-    
-            <p>Finishing At: </p> <p class="trip-arrivingdestination">${obj.TripDestinations.ArrivingDestination}</p> 
+            output += `<div data-id=${element.id}>
+        
+
+            <div class="kolumner">
+            <div class="row">
+                <div class="column">
+                <h2 class="trip-name">${obj.tripName}</h2>
+                <p>Leaving- and arriving date: </p>
+                    <p class="trip-leavingdate">${obj.TripDates.LeavingDate} - ${obj.TripDates.ArrivingDate} </p>
+                    <p>Available Seats: </p>
+                    <p class="trip-seats">${obj.Seats}</p>
     
             
-           <p>Available Seats: </p><p class="trip-seats">${obj.Seats}</p>
-            
-         <p>The map is missing</p>
-            
-            
-          
-            
-       
             </div>
-            
+                <div class="column">
+                <p>Description: </p>
+                <p class="trip-description">${obj.tripDescription}</p>
+                <p>Leaving From: </p>
+                <p class="trip-leavingdestination">${obj.TripDestinations.LeavingDestination}</p> 
+        </div>
+    
+                <table>
+                    <tr>
+                    <th><p>First Destination:</p></th>
+                    <th><p>Second Destination:</p></th>
+                    <th><p>Third Destination:</p></th>
+                    <th><p>Finishing At:</p></th>
+                    </tr>
+    
+                    <tr>
+                        <td><p class="trip-betweendestination">${obj.TripDestinations.BetweenDestination}</p></td>
+                        <td><p class="trip-betweendestination2">${obj.TripDestinations.BetweenDestination2}</p></td>
+                        <td><p class="trip-betweendestination3">${obj.TripDestinations.BetweenDestination3}</p></td>
+                        <td><p class="trip-arrivingdestination">${obj.TripDestinations.ArrivingDestination}</p></td>
+                    </tr>
+                </table>
+                <p>The map has not been downloaded by the user.</p>
+            </div>
+    </div>
+            </div>
+             
             `;
         }
+    
     
     else if (obj.tripMap2.data) {
     //if the user did not add any map
             //Skriver Output string without map
         output += `<div data-id=${element.id}>
-         <h2 class="trip-name">${obj.tripName}</h2>
-        <p>Description: </p><p class="trip-description">${obj.tripDescription}</p><p>Leaving Date: </p><p class="trip-leavingdate">${obj.TripDates.LeavingDate} </p>
-       <p>Arriving Date: </p><p class="trip-arrivingdate">${obj.TripDates.ArrivingDate} </p> 
         
-        <p>Leaving From: </p> <p class="trip-leavingdestination">${obj.TripDestinations.LeavingDestination}</p> 
 
-        <p>First Destination: </p> <p class="trip-betweendestination">${obj.TripDestinations.BetweenDestination}</p> 
-        
-        <p>Second Destination: </p> <p class="trip-betweendestination2">${obj.TripDestinations.BetweenDestination2}</p> 
-
-        <p>Third Destination: </p> <p class="trip-betweendestination3">${obj.TripDestinations.BetweenDestination3}</p> 
-
-        <p>Finishing At: </p> <p class="trip-arrivingdestination">${obj.TripDestinations.ArrivingDestination}</p> 
+        <div class="kolumner">
+        <div class="row">
+            <div class="column">
+            <h2 class="trip-name">${obj.tripName}</h2>
+            <p>Leaving- and arriving date: </p>
+                <p class="trip-leavingdate">${obj.TripDates.LeavingDate} - ${obj.TripDates.ArrivingDate} </p>
+                <p>Available Seats: </p>
+                <p class="trip-seats">${obj.Seats}</p>
 
         
-       <p>Available Seats: </p><p class="trip-seats">${obj.Seats}</p> <br>
+        </div>
+            <div class="column">
+            <p>Description: </p>
+            <p class="trip-description">${obj.tripDescription}</p>
+            <p>Leaving From: </p>
+            <p class="trip-leavingdestination">${obj.TripDestinations.LeavingDestination}</p> 
+    </div>
 
-        <img src=${apiUrl}${obj.tripMap2.data[0].attributes.formats.large.url} class="trip-image"/> 
-      
-        
-       
+            <table>
+                <tr>
+                <th><p>First Destination:</p></th>
+                <th><p>Second Destination:</p></th>
+                <th><p>Third Destination:</p></th>
+                <th><p>Finishing At:</p></th>
+                </tr>
+
+                <tr>
+                    <td><p class="trip-betweendestination">${obj.TripDestinations.BetweenDestination}</p></td>
+                    <td><p class="trip-betweendestination2">${obj.TripDestinations.BetweenDestination2}</p></td>
+                    <td><p class="trip-betweendestination3">${obj.TripDestinations.BetweenDestination3}</p></td>
+                    <td><p class="trip-arrivingdestination">${obj.TripDestinations.ArrivingDestination}</p></td>
+                </tr>
+            </table>
+            <img src=${apiUrl}${obj.tripMap2.data[0].attributes.formats.large.url} class="trip-image"/> 
+        </div>
+</div>
         </div>
          
         `;
@@ -100,8 +128,7 @@ async function getDataFromStrapi() {
   
      output += "</div> ";
 
-
-   
+ 
 
 }  )}
    
@@ -145,34 +172,20 @@ async function fetchRelax() {
             //Skriver Output string
            
             output += `
-            <div class="trip" data-id=${element.id}>
-            
-            <h2 class="trip-name">${obj.tripName}</h2>
-            
-            <p>Description: </p><p class="trip-description">${obj.tripDescription}</p>
-
-          
-           
-           
-    
-           
-          
-    
-            
-           <p>Available Seats: </p><p class="trip-seats">${obj.Seats}</p>
-            
-         
-          
-            
-       
-            </div>
-            
-            `;
-        }
+                <div class="filter">
+                <div class="filtrering">
+                    <div class="trip" data-id=${element.id}>
+                    <h2 class="trip-name">${obj.tripName}</h2>
+                    <p>Description: </p><p class="trip-description">${obj.tripDescription}</p>  
+                        <p>Available Seats: </p>
+                        <p class="trip-seats">${obj.Seats}</p>
+                 </div>
+             </div>
+         </div>
+                `;
+            }
     
    
- 
-
 
    //Skriver ut Output string till div-element
     //document.write(output);
@@ -218,43 +231,25 @@ async function fetchWaterfalls() {
                 //Skriver Output string
                
                 output += `
-                <div class="trip" data-id=${element.id}>
-                
-                <h2 class="trip-name">${obj.tripName}</h2>
-                
-                <p>Description: </p><p class="trip-description">${obj.tripDescription}</p>
-    
-              
-               
-               
-        
-               
-              
-        
-                
-               <p>Available Seats: </p><p class="trip-seats">${obj.Seats}</p>
-                
-             
-              
-                
-           
-                </div>
-                
+                <div class="filter">
+                <div class="filtrering">
+                    <div class="trip" data-id=${element.id}>
+                    <h2 class="trip-name">${obj.tripName}</h2>
+                    <p>Description: </p><p class="trip-description">${obj.tripDescription}</p>  
+                        <p>Available Seats: </p>
+                        <p class="trip-seats">${obj.Seats}</p>
+                 </div>
+             </div>
+         </div>
                 `;
             }
-        
-       
-     
-    
     
        //Skriver ut Output string till div-element
         //document.write(output);
         document.getElementById("tripsFetched").innerHTML = output;
     
     }  )}
-       
-     
-    
+         
     }
 
     async function fetchHiking() {
@@ -291,27 +286,16 @@ async function fetchWaterfalls() {
                     //Skriver Output string
                    
                     output += `
-                    <div class="trip" data-id=${element.id}>
-                    
-                    <h2 class="trip-name">${obj.tripName}</h2>
-                    
-                    <p>Description: </p><p class="trip-description">${obj.tripDescription}</p>
-        
-                  
-                   
-                   
-            
-                   
-                  
-            
-                    
-                   <p>Available Seats: </p><p class="trip-seats">${obj.Seats}</p>
-                    
-                 
-                  
-                    
-               
-                    </div>
+                    <div class="filter">
+                    <div class="filtrering">
+                        <div class="trip" data-id=${element.id}>
+                        <h2 class="trip-name">${obj.tripName}</h2>
+                        <p>Description: </p><p class="trip-description">${obj.tripDescription}</p>  
+                            <p>Available Seats: </p>
+                            <p class="trip-seats">${obj.Seats}</p>
+                     </div>
+                 </div>
+             </div>
                     
                     `;
                 }
@@ -364,27 +348,16 @@ async function fetchWaterfalls() {
                         //Skriver Output string
                        
                         output += `
-                        <div class="trip" data-id=${element.id}>
-                        
-                        <h2 class="trip-name">${obj.tripName}</h2>
-                        
-                        <p>Description: </p><p class="trip-description">${obj.tripDescription}</p>
-            
-                      
-                       
-                       
-                
-                       
-                      
-                
-                        
-                       <p>Available Seats: </p><p class="trip-seats">${obj.Seats}</p>
-                        
-                     
-                      
-                        
-                   
-                        </div>
+                        <div class="filter">
+                        <div class="filtrering">
+                            <div class="trip" data-id=${element.id}>
+                            <h2 class="trip-name">${obj.tripName}</h2>
+                            <p>Description: </p><p class="trip-description">${obj.tripDescription}</p>  
+                                <p>Available Seats: </p>
+                                <p class="trip-seats">${obj.Seats}</p>
+                         </div>
+                     </div>
+                 </div>
                         
                         `;
                     }
@@ -437,27 +410,16 @@ async function fetchWaterfalls() {
                             //Skriver Output string
                            
                             output += `
-                            <div class="trip" data-id=${element.id}>
-                            
-                            <h2 class="trip-name">${obj.tripName}</h2>
-                            
-                            <p>Description: </p><p class="trip-description">${obj.tripDescription}</p>
-                
-                          
-                           
-                           
-                    
-                           
-                          
-                    
-                            
-                           <p>Available Seats: </p><p class="trip-seats">${obj.Seats}</p>
-                            
-                         
-                          
-                            
-                       
-                            </div>
+                            <div class="filter">
+                            <div class="filtrering">
+                                <div class="trip" data-id=${element.id}>
+                                <h2 class="trip-name">${obj.tripName}</h2>
+                                <p>Description: </p><p class="trip-description">${obj.tripDescription}</p>  
+                                    <p>Available Seats: </p>
+                                    <p class="trip-seats">${obj.Seats}</p>
+                             </div>
+                         </div>
+                     </div>
                             
                             `;
                         }
@@ -510,27 +472,16 @@ async function fetchWaterfalls() {
                                 //Skriver Output string
                                
                                 output += `
-                                <div class="trip" data-id=${element.id}>
-                                
-                                <h2 class="trip-name">${obj.tripName}</h2>
-                                
-                                <p>Description: </p><p class="trip-description">${obj.tripDescription}</p>
-                    
-                              
-                               
-                               
-                        
-                               
-                              
-                        
-                                
-                               <p>Available Seats: </p><p class="trip-seats">${obj.Seats}</p>
-                                
-                             
-                              
-                                
-                           
-                                </div>
+                                <div class="filter">
+                                <div class="filtrering">
+                                    <div class="trip" data-id=${element.id}>
+                                    <h2 class="trip-name">${obj.tripName}</h2>
+                                    <p>Description: </p><p class="trip-description">${obj.tripDescription}</p>  
+                                        <p>Available Seats: </p>
+                                        <p class="trip-seats">${obj.Seats}</p>
+                                 </div>
+                             </div>
+                         </div>
                                 
                                 `;
                             }
@@ -583,27 +534,16 @@ async function fetchWaterfalls() {
                                     //Skriver Output string
                                    
                                     output += `
-                                    <div class="trip" data-id=${element.id}>
-                                    
-                                    <h2 class="trip-name">${obj.tripName}</h2>
-                                    
-                                    <p>Description: </p><p class="trip-description">${obj.tripDescription}</p>
-                        
-                                  
-                                   
-                                   
-                            
-                                   
-                                  
-                            
-                                    
-                                   <p>Available Seats: </p><p class="trip-seats">${obj.Seats}</p>
-                                    
-                                 
-                                  
-                                    
-                               
-                                    </div>
+                                    <div class="filter">
+                                    <div class="filtrering">
+                                        <div class="trip" data-id=${element.id}>
+                                        <h2 class="trip-name">${obj.tripName}</h2>
+                                        <p>Description: </p><p class="trip-description">${obj.tripDescription}</p>  
+                                            <p>Available Seats: </p>
+                                            <p class="trip-seats">${obj.Seats}</p>
+                                     </div>
+                                 </div>
+                             </div>
                                     
                                     `;
                                 }
@@ -656,27 +596,16 @@ async function fetchWaterfalls() {
                                         //Skriver Output string
                                        
                                         output += `
-                                        <div class="trip" data-id=${element.id}>
-                                        
-                                        <h2 class="trip-name">${obj.tripName}</h2>
-                                        
-                                        <p>Description: </p><p class="trip-description">${obj.tripDescription}</p>
-                            
-                                      
-                                       
-                                       
-                                
-                                       
-                                      
-                                
-                                        
-                                       <p>Available Seats: </p><p class="trip-seats">${obj.Seats}</p>
-                                        
-                                     
-                                      
-                                        
-                                   
-                                        </div>
+                                        <div class="filter">
+                                        <div class="filtrering">
+                                            <div class="trip" data-id=${element.id}>
+                                            <h2 class="trip-name">${obj.tripName}</h2>
+                                            <p>Description: </p><p class="trip-description">${obj.tripDescription}</p>  
+                                                <p>Available Seats: </p>
+                                                <p class="trip-seats">${obj.Seats}</p>
+                                         </div>
+                                     </div>
+                                 </div>
                                         
                                         `;
                                     }
@@ -729,34 +658,21 @@ async function fetchWaterfalls() {
                                             //Skriver Output string
                                            
                                             output += `
-                                            <div class="trip" data-id=${element.id}>
-                                            
-                                            <h2 class="trip-name">${obj.tripName}</h2>
-                                            
-                                            <p>Description: </p><p class="trip-description">${obj.tripDescription}</p>
-                                
-                                          
-                                           
-                                           
-                                    
-                                           
-                                          
-                                    
-                                            
-                                           <p>Available Seats: </p><p class="trip-seats">${obj.Seats}</p>
-                                            
-                                         
-                                          
-                                            
-                                       
-                                            </div>
+                                            <div class="filter">
+                                            <div class="filtrering">
+                                                <div class="trip" data-id=${element.id}>
+                                                <h2 class="trip-name">${obj.tripName}</h2>
+                                                <p>Description: </p><p class="trip-description">${obj.tripDescription}</p>  
+                                                    <p>Available Seats: </p>
+                                                    <p class="trip-seats">${obj.Seats}</p>
+                                             </div>
+                                         </div>
+                                     </div>
                                             
                                             `;
                                         }
                                     
-                                   
-                                 
-                                
+   
                                 
                                    //Skriver ut Output string till div-element
                                     //document.write(output);
@@ -802,33 +718,20 @@ async function fetchWaterfalls() {
                                                 //Skriver Output string
                                                
                                                 output += `
-                                                <div class="trip" data-id=${element.id}>
-                                                
-                                                <h2 class="trip-name">${obj.tripName}</h2>
-                                                
-                                                <p>Description: </p><p class="trip-description">${obj.tripDescription}</p>
-                                    
-                                              
-                                               
-                                               
-                                        
-                                               
-                                              
-                                        
-                                                
-                                               <p>Available Seats: </p><p class="trip-seats">${obj.Seats}</p>
-                                                
-                                             
-                                              
-                                                
-                                           
-                                                </div>
+                                                <div class="filter">
+                                                <div class="filtrering">
+                                                    <div class="trip" data-id=${element.id}>
+                                                    <h2 class="trip-name">${obj.tripName}</h2>
+                                                    <p>Description: </p><p class="trip-description">${obj.tripDescription}</p>  
+                                                        <p>Available Seats: </p>
+                                                        <p class="trip-seats">${obj.Seats}</p>
+                                                 </div>
+                                             </div>
+                                         </div>
                                                 
                                                 `;
                                             }
-                                        
-                                       
-                                     
+
                                     
                                     
                                        //Skriver ut Output string till div-element
@@ -875,27 +778,16 @@ async function fetchWaterfalls() {
                                                     //Skriver Output string
                                                    
                                                     output += `
-                                                    <div class="trip" data-id=${element.id}>
-                                                    
-                                                    <h2 class="trip-name">${obj.tripName}</h2>
-                                                    
-                                                    <p>Description: </p><p class="trip-description">${obj.tripDescription}</p>
-                                        
-                                                  
-                                                   
-                                                   
-                                            
-                                                   
-                                                  
-                                            
-                                                    
-                                                   <p>Available Seats: </p><p class="trip-seats">${obj.Seats}</p>
-                                                    
-                                                 
-                                                  
-                                                    
-                                               
-                                                    </div>
+                                                    <div class="filter">
+                                                    <div class="filtrering">
+                                                        <div class="trip" data-id=${element.id}>
+                                                        <h2 class="trip-name">${obj.tripName}</h2>
+                                                        <p>Description: </p><p class="trip-description">${obj.tripDescription}</p>  
+                                                            <p>Available Seats: </p>
+                                                            <p class="trip-seats">${obj.Seats}</p>
+                                                     </div>
+                                                 </div>
+                                             </div>
                                                     
                                                     `;
                                                 }
@@ -948,27 +840,16 @@ async function fetchWaterfalls() {
                                                         //Skriver Output string
                                                        
                                                         output += `
-                                                        <div class="trip" data-id=${element.id}>
-                                                        
-                                                        <h2 class="trip-name">${obj.tripName}</h2>
-                                                        
-                                                        <p>Description: </p><p class="trip-description">${obj.tripDescription}</p>
-                                            
-                                                      
-                                                       
-                                                       
-                                                
-                                                       
-                                                      
-                                                
-                                                        
-                                                       <p>Available Seats: </p><p class="trip-seats">${obj.Seats}</p>
-                                                        
-                                                     
-                                                      
-                                                        
-                                                   
-                                                        </div>
+                                                        <div class="filter">
+                                                        <div class="filtrering">
+                                                            <div class="trip" data-id=${element.id}>
+                                                            <h2 class="trip-name">${obj.tripName}</h2>
+                                                            <p>Description: </p><p class="trip-description">${obj.tripDescription}</p>  
+                                                                <p>Available Seats: </p>
+                                                                <p class="trip-seats">${obj.Seats}</p>
+                                                         </div>
+                                                     </div>
+                                                 </div>
                                                         
                                                         `;
                                                     }
@@ -1021,27 +902,16 @@ async function fetchWaterfalls() {
                                                             //Skriver Output string
                                                            
                                                             output += `
-                                                            <div class="trip" data-id=${element.id}>
-                                                            
-                                                            <h2 class="trip-name">${obj.tripName}</h2>
-                                                            
-                                                            <p>Description: </p><p class="trip-description">${obj.tripDescription}</p>
-                                                
-                                                          
-                                                           
-                                                           
-                                                    
-                                                           
-                                                          
-                                                    
-                                                            
-                                                           <p>Available Seats: </p><p class="trip-seats">${obj.Seats}</p>
-                                                            
-                                                         
-                                                          
-                                                            
-                                                       
-                                                            </div>
+                                                            <div class="filter">
+                                                            <div class="filtrering">
+                                                                <div class="trip" data-id=${element.id}>
+                                                                <h2 class="trip-name">${obj.tripName}</h2>
+                                                                <p>Description: </p><p class="trip-description">${obj.tripDescription}</p>  
+                                                                    <p>Available Seats: </p>
+                                                                    <p class="trip-seats">${obj.Seats}</p>
+                                                             </div>
+                                                         </div>
+                                                     </div>
                                                             
                                                             `;
                                                         }
@@ -1094,27 +964,16 @@ async function fetchWaterfalls() {
                                                                 //Skriver Output string
                                                                
                                                                 output += `
-                                                                <div class="trip" data-id=${element.id}>
-                                                                
-                                                                <h2 class="trip-name">${obj.tripName}</h2>
-                                                                
-                                                                <p>Description: </p><p class="trip-description">${obj.tripDescription}</p>
-                                                    
-                                                              
-                                                               
-                                                               
-                                                        
-                                                               
-                                                              
-                                                        
-                                                                
-                                                               <p>Available Seats: </p><p class="trip-seats">${obj.Seats}</p>
-                                                                
-                                                             
-                                                              
-                                                                
-                                                           
-                                                                </div>
+                                                                <div class="filter">
+                                                                <div class="filtrering">
+                                                                    <div class="trip" data-id=${element.id}>
+                                                                    <h2 class="trip-name">${obj.tripName}</h2>
+                                                                    <p>Description: </p><p class="trip-description">${obj.tripDescription}</p>  
+                                                                        <p>Available Seats: </p>
+                                                                        <p class="trip-seats">${obj.Seats}</p>
+                                                                 </div>
+                                                             </div>
+                                                         </div>
                                                                 
                                                                 `;
                                                             }
@@ -1167,27 +1026,16 @@ async function fetchWaterfalls() {
                                                                     //Skriver Output string
                                                                    
                                                                     output += `
-                                                                    <div class="trip" data-id=${element.id}>
-                                                                    
-                                                                    <h2 class="trip-name">${obj.tripName}</h2>
-                                                                    
-                                                                    <p>Description: </p><p class="trip-description">${obj.tripDescription}</p>
-                                                        
-                                                                  
-                                                                   
-                                                                   
-                                                            
-                                                                   
-                                                                  
-                                                            
-                                                                    
-                                                                   <p>Available Seats: </p><p class="trip-seats">${obj.Seats}</p>
-                                                                    
-                                                                 
-                                                                  
-                                                                    
-                                                               
-                                                                    </div>
+                                                                    <div class="filter">
+                                                                    <div class="filtrering">
+                                                                        <div class="trip" data-id=${element.id}>
+                                                                        <h2 class="trip-name">${obj.tripName}</h2>
+                                                                        <p>Description: </p><p class="trip-description">${obj.tripDescription}</p>  
+                                                                            <p>Available Seats: </p>
+                                                                            <p class="trip-seats">${obj.Seats}</p>
+                                                                     </div>
+                                                                 </div>
+                                                             </div>
                                                                     
                                                                     `;
                                                                 }
@@ -1241,27 +1089,16 @@ async function fetchWaterfalls() {
                                                                         //Skriver Output string
                                                                        
                                                                         output += `
-                                                                        <div class="trip" data-id=${element.id}>
-                                                                        
-                                                                        <h2 class="trip-name">${obj.tripName}</h2>
-                                                                        
-                                                                        <p>Description: </p><p class="trip-description">${obj.tripDescription}</p>
-                                                            
-                                                                      
-                                                                       
-                                                                       
-                                                                
-                                                                       
-                                                                      
-                                                                
-                                                                        
-                                                                       <p>Available Seats: </p><p class="trip-seats">${obj.Seats}</p>
-                                                                        
-                                                                     
-                                                                      
-                                                                        
-                                                                   
-                                                                        </div>
+                                                                        <div class="filter">
+                                                                        <div class="filtrering">
+                                                                            <div class="trip" data-id=${element.id}>
+                                                                            <h2 class="trip-name">${obj.tripName}</h2>
+                                                                            <p>Description: </p><p class="trip-description">${obj.tripDescription}</p>  
+                                                                                <p>Available Seats: </p>
+                                                                                <p class="trip-seats">${obj.Seats}</p>
+                                                                         </div>
+                                                                     </div>
+                                                                 </div>
                                                                         
                                                                         `;
                                                                     }
@@ -1314,27 +1151,16 @@ async function fetchWaterfalls() {
                                                                             //Skriver Output string
                                                                            
                                                                             output += `
-                                                                            <div class="trip" data-id=${element.id}>
-                                                                            
-                                                                            <h2 class="trip-name">${obj.tripName}</h2>
-                                                                            
-                                                                            <p>Description: </p><p class="trip-description">${obj.tripDescription}</p>
-                                                                
-                                                                          
-                                                                           
-                                                                           
-                                                                    
-                                                                           
-                                                                          
-                                                                    
-                                                                            
-                                                                           <p>Available Seats: </p><p class="trip-seats">${obj.Seats}</p>
-                                                                            
-                                                                         
-                                                                          
-                                                                            
-                                                                       
-                                                                            </div>
+                                                                            <div class="filter">
+                                                                            <div class="filtrering">
+                                                                                <div class="trip" data-id=${element.id}>
+                                                                                <h2 class="trip-name">${obj.tripName}</h2>
+                                                                                <p>Description: </p><p class="trip-description">${obj.tripDescription}</p>  
+                                                                                    <p>Available Seats: </p>
+                                                                                    <p class="trip-seats">${obj.Seats}</p>
+                                                                             </div>
+                                                                         </div>
+                                                                     </div>
                                                                             
                                                                             `;
                                                                         }
@@ -1387,27 +1213,16 @@ async function fetchWaterfalls() {
                                                                                 //Skriver Output string
                                                                                
                                                                                 output += `
-                                                                                <div class="trip" data-id=${element.id}>
-                                                                                
-                                                                                <h2 class="trip-name">${obj.tripName}</h2>
-                                                                                
-                                                                                <p>Description: </p><p class="trip-description">${obj.tripDescription}</p>
-                                                                    
-                                                                              
-                                                                               
-                                                                               
-                                                                        
-                                                                               
-                                                                              
-                                                                        
-                                                                                
-                                                                               <p>Available Seats: </p><p class="trip-seats">${obj.Seats}</p>
-                                                                                
-                                                                             
-                                                                              
-                                                                                
-                                                                           
-                                                                                </div>
+                                                                                <div class="filter">
+                                                                                <div class="filtrering">
+                                                                                    <div class="trip" data-id=${element.id}>
+                                                                                    <h2 class="trip-name">${obj.tripName}</h2>
+                                                                                    <p>Description: </p><p class="trip-description">${obj.tripDescription}</p>  
+                                                                                        <p>Available Seats: </p>
+                                                                                        <p class="trip-seats">${obj.Seats}</p>
+                                                                                 </div>
+                                                                             </div>
+                                                                         </div>
                                                                                 
                                                                                 `;
                                                                             }
@@ -1460,28 +1275,16 @@ async function fetchWaterfalls() {
                                                                                     //Skriver Output string
                                                                                    
                                                                                     output += `
-                                                                                    <div class="trip" data-id=${element.id}>
-                                                                                    
-                                                                                    <h2 class="trip-name">${obj.tripName}</h2>
-                                                                                    
-                                                                                    <p>Description: </p><p class="trip-description">${obj.tripDescription}</p>
-                                                                        
-                                                                                  
-                                                                                   
-                                                                                   
-                                                                            
-                                                                                   
-                                                                                  
-                                                                            
-                                                                                    
-                                                                                   <p>Available Seats: </p><p class="trip-seats">${obj.Seats}</p>
-                                                                                    
-                                                                                 
-                                                                                  
-                                                                                    
-                                                                               
-                                                                                    </div>
-                                                                                    
+                                                                                    <div class="filter">
+                                                                                    <div class="filtrering">
+                                                                                        <div class="trip" data-id=${element.id}>
+                                                                                        <h2 class="trip-name">${obj.tripName}</h2>
+                                                                                        <p>Description: </p><p class="trip-description">${obj.tripDescription}</p>  
+                                                                                            <p>Available Seats: </p>
+                                                                                            <p class="trip-seats">${obj.Seats}</p>
+                                                                                     </div>
+                                                                                 </div>
+                                                                             </div>
                                                                                     `;
                                                                                 }
                                                                             
@@ -1533,27 +1336,16 @@ async function fetchWaterfalls() {
                                                                                         //Skriver Output string
                                                                                        
                                                                                         output += `
-                                                                                        <div class="trip" data-id=${element.id}>
-                                                                                        
-                                                                                        <h2 class="trip-name">${obj.tripName}</h2>
-                                                                                        
-                                                                                        <p>Description: </p><p class="trip-description">${obj.tripDescription}</p>
-                                                                            
-                                                                                      
-                                                                                       
-                                                                                       
-                                                                                
-                                                                                       
-                                                                                      
-                                                                                
-                                                                                        
-                                                                                       <p>Available Seats: </p><p class="trip-seats">${obj.Seats}</p>
-                                                                                        
-                                                                                     
-                                                                                      
-                                                                                        
-                                                                                   
-                                                                                        </div>
+                                                                                        <div class="filter">
+                                                                                        <div class="filtrering">
+                                                                                            <div class="trip" data-id=${element.id}>
+                                                                                            <h2 class="trip-name">${obj.tripName}</h2>
+                                                                                            <p>Description: </p><p class="trip-description">${obj.tripDescription}</p>  
+                                                                                                <p>Available Seats: </p>
+                                                                                                <p class="trip-seats">${obj.Seats}</p>
+                                                                                         </div>
+                                                                                     </div>
+                                                                                 </div>
                                                                                         
                                                                                         `;
                                                                                     }
@@ -1606,27 +1398,16 @@ async function fetchWaterfalls() {
                                                                                             //Skriver Output string
                                                                                            
                                                                                             output += `
-                                                                                            <div class="trip" data-id=${element.id}>
-                                                                                            
-                                                                                            <h2 class="trip-name">${obj.tripName}</h2>
-                                                                                            
-                                                                                            <p>Description: </p><p class="trip-description">${obj.tripDescription}</p>
-                                                                                
-                                                                                          
-                                                                                           
-                                                                                           
-                                                                                    
-                                                                                           
-                                                                                          
-                                                                                    
-                                                                                            
-                                                                                           <p>Available Seats: </p><p class="trip-seats">${obj.Seats}</p>
-                                                                                            
-                                                                                         
-                                                                                          
-                                                                                            
-                                                                                       
-                                                                                            </div>
+                                                                                            <div class="filter">
+                                                                                            <div class="filtrering">
+                                                                                                <div class="trip" data-id=${element.id}>
+                                                                                                <h2 class="trip-name">${obj.tripName}</h2>
+                                                                                                <p>Description: </p><p class="trip-description">${obj.tripDescription}</p>  
+                                                                                                    <p>Available Seats: </p>
+                                                                                                    <p class="trip-seats">${obj.Seats}</p>
+                                                                                             </div>
+                                                                                         </div>
+                                                                                     </div>
                                                                                             
                                                                                             `;
                                                                                         }
@@ -1679,36 +1460,23 @@ async function fetchWaterfalls() {
                                                                                                 //Skriver Output string
                                                                                                
                                                                                                 output += `
-                                                                                                <div class="trip" data-id=${element.id}>
-                                                                                                
-                                                                                                <h2 class="trip-name">${obj.tripName}</h2>
-                                                                                                
-                                                                                                <p>Description: </p><p class="trip-description">${obj.tripDescription}</p>
-                                                                                    
-                                                                                              
-                                                                                               
-                                                                                               
-                                                                                        
-                                                                                               
-                                                                                              
-                                                                                        
-                                                                                                
-                                                                                               <p>Available Seats: </p><p class="trip-seats">${obj.Seats}</p>
-                                                                                                
-                                                                                             
-                                                                                              
-                                                                                                
-                                                                                           
+                                                                                                <div class="filter">
+                                                                                                   <div class="filtrering">
+                                                                                                       <div class="trip" data-id=${element.id}>
+                                                                                                       <h2 class="trip-name">${obj.tripName}</h2>
+                                                                                                       <p>Description: </p><p class="trip-description">${obj.tripDescription}</p>  
+                                                                                                           <p>Available Seats: </p>
+                                                                                                           <p class="trip-seats">${obj.Seats}</p>
+                                                                                                    </div>
                                                                                                 </div>
+                                                                                            </div>
                                                                                                 
                                                                                                 `;
                                                                                             }
                                                                                         
-                                                                                       
-                                                                                     
+           
                                                                                     
-                                                                                    
-                                                                                       //Skriver ut Output string till div-element
+                                                                                      //Skriver ut Output string till div-element
                                                                                         //document.write(output);
                                                                                         document.getElementById("tripsFetched").innerHTML = output;
                                                                                     
@@ -1752,41 +1520,25 @@ async function fetchWaterfalls() {
                                                                                                     //Skriver Output string
                                                                                                    
                                                                                                     output += `
-                                                                                                    <div class="trip" data-id=${element.id}>
                                                                                                     
-                                                                                                    <h2 class="trip-name">${obj.tripName}</h2>
-                                                                                                    
-                                                                                                    <p>Description: </p><p class="trip-description">${obj.tripDescription}</p>
-                                                                                        
-                                                                                                  
-                                                                                                   
-                                                                                                   
-                                                                                            
-                                                                                                   
-                                                                                                  
-                                                                                            
-                                                                                                    
-                                                                                                   <p>Available Seats: </p><p class="trip-seats">${obj.Seats}</p>
-                                                                                                    
-                                                                                                 
-                                                                                                  
-                                                                                                    
-                                                                                               
+                    
+                                                                                                <div class="filter">
+                                                                                                   <div class="filtrering">
+                                                                                                       <div class="trip" data-id=${element.id}>
+                                                                                                       <h2 class="trip-name">${obj.tripName}</h2>
+                                                                                                       <p>Description: </p><p class="trip-description">${obj.tripDescription}</p>  
+                                                                                                           <p>Available Seats: </p>
+                                                                                                           <p class="trip-seats">${obj.Seats}</p>
                                                                                                     </div>
-                                                                                                    
+                                                                                                </div>
+                                                                                            </div>
                                                                                                     `;
                                                                                                 }
-                                                                                            
-                                                                                           
-                                                                                         
-                                                                                        
+
                                                                                         
                                                                                            //Skriver ut Output string till div-element
                                                                                             //document.write(output);
                                                                                             document.getElementById("tripsFetched").innerHTML = output;
                                                                                         
-                                                                                        }  )}
-                                                                                           
-                                                                                         
-                                                                                        
-                                                                                        }
+                                                                                        }  )}                              
+                                                                                    }

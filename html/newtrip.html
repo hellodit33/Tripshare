@@ -6,89 +6,87 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <script src="newtrip.js"></script>
+    <link rel="stylesheet" href="style.css">
     <title>Post a new trip</title>
 </head>
 <body>
+
     <nav>
+        <div class="logoimg">
+        <img src="" alt="Loga">
+    </div>
         <a href="index.html">Find a trip</a>
-
- <a href="newtrip.html">Add a new trip</a>
-
- <a href="updatetrip.html">Update a trip</a>
-
- <a href="login.html">Login</a>
-
- <a href="logout.html">Log out</a>
-
- <a href="signup.html">Signup</a>
+        <a href="newtrip.html">Add a new trip</a>
+        <a href="updatetrip.html">Update a trip</a>
+        <a href="login.html">Login</a>
+        <a href="logout.html">Log out</a>
+        <a href="signup.html">Signup</a>
     </nav>
+
 <h1>Post a new trip</h1>
-<div>
-    <p>You must log in first</p>
-    <label for="user">Username</label>
-    <input type="text" name="user" id="user" onchange="userValidate(this);">
+<div class="kontakta">
+    <p class="titel">Log in to continue</p>
+    <input type="text" name="user" id="user" placeholder="Username" onchange="userValidate(this);">
     <div id="userError" class="errorInfo"></div>
     <br>
     
-    <label for="email">Email</label>
-    <input type="email" name="email" id="email" onchange="emailValidate(this);">
+    <input type="email" name="email" id="email" placeholder="Email" onchange="emailValidate(this);">
     <div id="emailError" class="errorInfo"></div>
-<br>
-    <label for="password">Password</label>
-    <input type="password" name="password" id="password" onchange="passwordValidate(this);">
+    <br>
+
+    <input type="password" name="password" id="password" placeholder="Username"onchange="passwordValidate(this);">
     <div id="passwordError" class="errorInfo"></div>
 </div>
-<br>
 <div>
-    <p>Fill in the details for your trip</p>
-    <label for="name">Give a name to your trip</label>
+    <p class="titel">Fill in the details for your trip</p>
+    <label for="name">Give a name to your trip</label><br>
     <input type="text" name="name" id="name" onchange="tripNameValidate(this);">
     <div id="tripNameError" class="errorInfo"></div>
-</div>
+</div><br>
 <div>
-    <label for="description">Description</label>
+    <label for="description">Description</label><br>
     <input type="text" name="description" id="description" onchange="tripDescriptionValidate(this);">
     <div id="tripDescriptionError" class="errorInfo"></div>
-</div>
+</div><br>
 <div>
-    <label for="seats">Seats</label>
+    <label for="seats">Seats</label><br>
     <input type="number" name="seats" id="seats">
-</div>
+</div><br>
 <div>
-    <label for="tripDates-leaving">Leaving on:</label>
+    <label for="tripDates-leaving">Leaving on:</label><br>
     <input type="date" name="tripDates-leaving" id="tripDates-leaving" placeholder="Departure date">
-</div>
+</div><br>
 <div>
-    <label for="tripDates-arriving">Arriving on</label>
+    <label for="tripDates-arriving">Arriving on</label><br>
     <input type="date" name="tripDates-arriving" id="tripDates-arriving" placeholder="Arriving date">
-</div>
+</div><br>
 
 <div>
-    <label for="leavingDestination">Leaving from:</label>
+    <label for="leavingDestination">Leaving from:</label><br>
     <input type="text" name="leavingDestination" id="leavingDestination" placeholder="the place you're leaving from" onchange="tripLeavingDestinationValidate(this);">
     <div id="tripLeavingDestinationError" class="errorInfo"></div>
 </div>
-<div>
-    <label for="betweenDestination">First stop:</label>
+<div><br>
+    <label for="betweenDestination">First stop:</label><br>
     <input type="text" name="betweenDestination" id="betweenDestination">
 </div>
-<div>
-    <label for="betweenDestination2">Second stop:</label>
+<div><br>
+    <label for="betweenDestination2">Second stop:</label><br>
     <input type="text" name="betweenDestination2" id="betweenDestination2">
 </div>
-<div>
-    <label for="betweenDestination3">Third stop:</label>
+<div><br>
+    <label for="betweenDestination3">Third stop:</label><br>
     <input type="text" name="betweenDestination3" id="betweenDestination3">
 </div>
-<div>
-    <label for="arrivingDestination">Coming back to:</label>
+<div><br>
+    <label for="arrivingDestination">Coming back to:</label><br>
     <input type="text" name="arrivingDestination" id="arrivingDestination" placeholder="the place you're finishing your trip at" onchange="tripArrivingDestinationValidate(this);">
     <div id="tripArrivingDestinationError" class="errorInfo"></div>
 </div>
-<div>
-    <label for="tripMap2">Upload map</label>
+<div><br>
+    <label for="tripMap2">Upload map</label><br>
     <input type="file" name="tripMap2" id="tripMap2">
-</div>
+</div><br>
    
 
 <div>
@@ -96,6 +94,7 @@
 </div>
 <div id="tripsFetched"></div>
 <br>
+<nav>
 <a href="newtrip.html">Add a new trip</a>
 
 <a href="updatetrip.html">Update a trip</a>
@@ -105,6 +104,6 @@
 <a href="logout.html">Log out</a>
 
 <a href="signup.html">Signup</a>
-
+</nav>
 
 </body>

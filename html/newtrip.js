@@ -33,75 +33,99 @@
             if (!obj.tripMap2.data) {
             //Skriver Output string
            
-            output += `
-            <div class="trip" data-id=${element.id}>
-            
-            <h2 class="trip-name">${obj.tripName}</h2>
-            
-            <p>Description: </p><p class="trip-description">${obj.tripDescription}</p>
+            output += `<div data-id=${element.id}>
+        
 
-            <p>Leaving Date: </p><p class="trip-leavingdate">${obj.TripDates.LeavingDate} </p>
-           
-            <p>Arriving Date: </p><p class="trip-arrivingdate">${obj.TripDates.ArrivingDate} </p> 
-            
-            <p>Leaving From: </p> <p class="trip-leavingdestination">${obj.TripDestinations.LeavingDestination}</p> 
-    
-            <p>First Destination: </p> <p class="trip-betweendestination">${obj.TripDestinations.BetweenDestination}</p> 
-            
-            <p>Second Destination: </p> <p class="trip-betweendestination2">${obj.TripDestinations.BetweenDestination2}</p> 
-    
-            <p>Third Destination: </p> <p class="trip-betweendestination3">${obj.TripDestinations.BetweenDestination3}</p> 
-    
-            <p>Finishing At: </p> <p class="trip-arrivingdestination">${obj.TripDestinations.ArrivingDestination}</p> 
+            <div class="kolumner">
+            <div class="row">
+                <div class="column">
+                <h2 class="trip-name">${obj.tripName}</h2>
+                <p>Leaving- and arriving date: </p>
+                    <p class="trip-leavingdate">${obj.TripDates.LeavingDate} - ${obj.TripDates.ArrivingDate} </p>
+                    <p>Available Seats: </p>
+                    <p class="trip-seats">${obj.Seats}</p>
     
             
-           <p>Available Seats: </p><p class="trip-seats">${obj.Seats}</p>
-            
-         <p>The map is missing</p>
-            
-           
-          
-            
-       
             </div>
-            
+                <div class="column">
+                <p>Description: </p>
+                <p class="trip-description">${obj.tripDescription}</p>
+                <p>Leaving From: </p>
+                <p class="trip-leavingdestination">${obj.TripDestinations.LeavingDestination}</p> 
+        </div>
+    
+                <table>
+                    <tr>
+                    <th><p>First Destination:</p></th>
+                    <th><p>Second Destination:</p></th>
+                    <th><p>Third Destination:</p></th>
+                    <th><p>Finishing At:</p></th>
+                    </tr>
+    
+                    <tr>
+                        <td><p class="trip-betweendestination">${obj.TripDestinations.BetweenDestination}</p></td>
+                        <td><p class="trip-betweendestination2">${obj.TripDestinations.BetweenDestination2}</p></td>
+                        <td><p class="trip-betweendestination3">${obj.TripDestinations.BetweenDestination3}</p></td>
+                        <td><p class="trip-arrivingdestination">${obj.TripDestinations.ArrivingDestination}</p></td>
+                    </tr>
+                </table>
+                <p>The map has not been downloaded by the user.</p>
+            </div>
+    </div>
+            </div>
+             
             `;
         }
     
     else if (obj.tripMap2.data) {
     //if the user did not add any map
             //Skriver Output string without map
-        output += `<div data-id=${element.id}>
-         <h2 class="trip-name">${obj.tripName}</h2>
-        <p>Description: </p><p class="trip-description">${obj.tripDescription}</p><p>Leaving Date: </p><p class="trip-leavingdate">${obj.TripDates.LeavingDate} </p>
-       <p>Arriving Date: </p><p class="trip-arrivingdate">${obj.TripDates.ArrivingDate} </p> 
+            output += `<div data-id=${element.id}>
         
-        <p>Leaving From: </p> <p class="trip-leavingdestination">${obj.TripDestinations.LeavingDestination}</p> 
 
-        <p>First Destination: </p> <p class="trip-betweendestination">${obj.TripDestinations.BetweenDestination}</p> 
-        
-        <p>Second Destination: </p> <p class="trip-betweendestination2">${obj.TripDestinations.BetweenDestination2}</p> 
-
-        <p>Third Destination: </p> <p class="trip-betweendestination3">${obj.TripDestinations.BetweenDestination3}</p> 
-
-        <p>Finishing At: </p> <p class="trip-arrivingdestination">${obj.TripDestinations.ArrivingDestination}</p> 
-
-        
-       <p>Available Seats: </p><p class="trip-seats">${obj.Seats}</p> <br>
-
-        <img src=${apiUrl}${obj.tripMap2.data[0].attributes.formats.large.url} class="trip-image"/> 
-     
-        
-       
-        </div>
-         
-        `;
-    }
+            <div class="kolumner">
+            <div class="row">
+                <div class="column">
+                <h2 class="trip-name">${obj.tripName}</h2>
+                <p>Leaving- and arriving date: </p>
+                    <p class="trip-leavingdate">${obj.TripDates.LeavingDate} - ${obj.TripDates.ArrivingDate} </p>
+                    <p>Available Seats: </p>
+                    <p class="trip-seats">${obj.Seats}</p>
     
-  
-     output += "</div> ";
-
-
+            
+            </div>
+                <div class="column">
+                <p>Description: </p>
+                <p class="trip-description">${obj.tripDescription}</p>
+                <p>Leaving From: </p>
+                <p class="trip-leavingdestination">${obj.TripDestinations.LeavingDestination}</p> 
+        </div>
+    
+                <table>
+                    <tr>
+                    <th><p>First Destination:</p></th>
+                    <th><p>Second Destination:</p></th>
+                    <th><p>Third Destination:</p></th>
+                    <th><p>Finishing At:</p></th>
+                    </tr>
+    
+                    <tr>
+                        <td><p class="trip-betweendestination">${obj.TripDestinations.BetweenDestination}</p></td>
+                        <td><p class="trip-betweendestination2">${obj.TripDestinations.BetweenDestination2}</p></td>
+                        <td><p class="trip-betweendestination3">${obj.TripDestinations.BetweenDestination3}</p></td>
+                        <td><p class="trip-arrivingdestination">${obj.TripDestinations.ArrivingDestination}</p></td>
+                    </tr>
+                </table>
+                <img src=${apiUrl}${obj.tripMap2.data[0].attributes.formats.large.url} class="trip-image"/> 
+            </div>
+    </div>
+            </div>
+             
+            `;
+        }
+        
+      
+         output += "</div> ";
    
 
 }  )}

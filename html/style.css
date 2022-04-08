@@ -11,6 +11,8 @@ Author: Elodie Pradet & Simon Khalaf
   margin: auto;
 }
 
+/* Simon: Här är style.css från wordpress med mina ändringar för bakgrundsbilden och första sidan*/
+
 /*----- Första bilden - startsidan -----*/
 .container {
   position: relative;
@@ -200,6 +202,7 @@ input[type="submit"] {
   width: 25%;
 }
 
+/* Simon: Här är styles.css som du gjorde igår */
 body {
   text-align: center;
   margin: 0;
